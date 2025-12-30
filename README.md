@@ -23,10 +23,14 @@ https://berthuygens.github.io/daemon/
 
 ### GitHub Token
 
-1. Go to [GitHub Settings > Tokens](https://github.com/settings/tokens)
-2. Create a new token with scopes: `repo`, `read:user`
-3. Open the dashboard, click the settings icon (gear)
-4. Paste your token and save
+1. Go to [GitHub Settings > Personal Access Tokens](https://github.com/settings/tokens)
+2. Click **Generate new token (classic)**
+3. Select scopes:
+   - `repo` - Access to private repositories (issues, PRs)
+   - `read:user` - Read your profile information
+4. Copy the generated token (starts with `ghp_`)
+5. Open the dashboard, click the settings icon (gear)
+6. Paste your token and save
 
 ### Google Calendar (with Cloudflare Worker)
 
@@ -95,20 +99,25 @@ The following events are automatically filtered out (work locations):
 ```
 ┌─────────────────────────────────────────────────────────┐
 │  GitHub Pages (Static Frontend)                         │
-│  https://berthuygens.github.io/daemon/     │
+│  https://berthuygens.github.io/daemon/                  │
 └──────────────────────┬──────────────────────────────────┘
-                       │ API calls for tokens
+                       │ HTTPS requests
                        ▼
 ┌─────────────────────────────────────────────────────────┐
 │  Cloudflare Worker (OAuth Handler)                      │
-│  https://sysopbeta-oauth.huygens-bert.workers.dev       │
-│                                                         │
-│  Endpoints:                                             │
 │  - /auth     → Redirect to Google OAuth                 │
 │  - /callback → Exchange code for tokens                 │
 │  - /token    → Get fresh access token (auto-refresh!)   │
 │  - /status   → Check if authenticated                   │
 │  - /logout   → Remove stored tokens                     │
+└──────────────────────┬──────────────────────────────────┘
+                       │ OAuth 2.0
+                       ▼
+┌─────────────────────────────────────────────────────────┐
+│  External APIs                                          │
+│  - GitHub REST API (issues, PRs)                        │
+│  - Google Calendar API v3                               │
+│  - Google OAuth 2.0                                     │
 └─────────────────────────────────────────────────────────┘
 ```
 
