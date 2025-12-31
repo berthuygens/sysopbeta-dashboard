@@ -8,7 +8,7 @@ A personal developer dashboard with GitHub integration and Google Calendar suppo
 - **Google Calendar**: See your next 3 upcoming meetings with **automatic token refresh** (never manually reconnect!)
 - **Quick Links**: Fast access to frequently used services (GitHub, Calendar, Gmail, De Morgen, Reddit, AWS, ISMS, Gemini, Chess)
 - **Drag & Drop Links**: Reorder quick links by dragging - order is saved locally
-- **Google Search**: Integrated search bar (press `/` to focus)
+- **Fun GitHub Discovery**: Random curated GitHub repositories with Octocat images (refresh button to discover more)
 - **Dark/Light Mode**: Toggle between themes with preference saved locally
 - **Profile Picture**: Configurable profile picture with custom link
 - **Random Quotes**: Programming quotes displayed in the footer
@@ -86,13 +86,6 @@ The following events are automatically filtered out (work locations):
 - home, thuis
 - office, kantoor, bureau
 - HT BXL, VAC GENT
-
-## Keyboard Shortcuts
-
-| Key | Action |
-|-----|--------|
-| `/` | Focus search bar |
-| `Enter` | Search Google |
 
 ## Architecture
 
