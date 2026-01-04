@@ -2390,10 +2390,17 @@
 
         async function fetchCCBNews() {
             const ticker = document.getElementById('ccb-news-ticker');
+            const config = getConfig();
+
+            if (!config.workerUrl) {
+                ticker.textContent = 'set worker url';
+                ticker.href = '#';
+                return;
+            }
+
             try {
-                // Use allorigins.win as CORS proxy
-                const proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent('https://ccb.belgium.be/advisories.xml');
-                const response = await fetch(proxyUrl);
+                const rssUrl = `${config.workerUrl}/rss?url=${encodeURIComponent('https://ccb.belgium.be/advisories.xml')}`;
+                const response = await fetch(rssUrl);
                 const xmlText = await response.text();
 
                 const parser = new DOMParser();

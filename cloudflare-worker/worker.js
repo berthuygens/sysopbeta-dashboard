@@ -55,6 +55,8 @@ export default {
           return handleLogout(request, env, corsHeader);
         case '/status':
           return handleStatus(request, env, corsHeader);
+        case '/rss':
+          return handleRSS(url, corsHeader);
         default:
           return jsonResponse({ error: 'Not found' }, 404, corsHeader);
       }
@@ -250,6 +252,48 @@ async function handleStatus(request, env, corsHeader) {
   return jsonResponse({
     authenticated: !!refreshToken
   }, 200, corsHeader);
+}
+
+// RSS Proxy: Fetch and return RSS feed (bypasses CORS)
+async function handleRSS(url, corsHeader) {
+  const feedUrl = url.searchParams.get('url');
+
+  if (!feedUrl) {
+    return jsonResponse({ error: 'Missing url parameter' }, 400, corsHeader);
+  }
+
+  // Only allow specific RSS feeds for security
+  const allowedFeeds = [
+    'https://ccb.belgium.be/advisories.xml'
+  ];
+
+  if (!allowedFeeds.includes(feedUrl)) {
+    return jsonResponse({ error: 'Feed not allowed' }, 403, corsHeader);
+  }
+
+  try {
+    const response = await fetch(feedUrl, {
+      headers: { 'User-Agent': 'DAEMON Dashboard RSS Fetcher' }
+    });
+
+    if (!response.ok) {
+      return jsonResponse({ error: `Feed returned ${response.status}` }, 502, corsHeader);
+    }
+
+    const xml = await response.text();
+
+    return new Response(xml, {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/xml',
+        'Access-Control-Allow-Origin': corsHeader,
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',
+        'Cache-Control': 'public, max-age=300', // Cache for 5 minutes
+      },
+    });
+  } catch (error) {
+    return jsonResponse({ error: 'Failed to fetch feed' }, 502, corsHeader);
+  }
 }
 
 // Helper: JSON response
