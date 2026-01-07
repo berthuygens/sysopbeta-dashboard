@@ -35,7 +35,14 @@
       "Bash(wrangler deploy:*)",
       "Bash(wrangler whoami:*)",
       "Bash(git remote set-url:*)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Bash(git push -u:*)",
+      "Bash(gh pr create:*)",
+      "Bash(gh pr merge:*)",
+      "Bash(git pull)",
+      "Skill(design-principles)",
+      "Skill(git)",
+      "WebFetch(domain:ready.so)"
     ]
   }
 }
