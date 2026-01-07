@@ -168,14 +168,12 @@
         }
 
         .ascii-art {
-            font-size: 0.75rem;
-            line-height: 1.15;
-            color: var(--console-text, #e2e8f0);
-            white-space: pre;
             display: block;
-            text-align: center;
-            text-shadow: 0 0 10px var(--console-glow, rgba(100, 255, 218, 0.3));
-            letter-spacing: -0.5px;
+            margin: 0 auto;
+            height: 48px;
+            width: auto;
+            color: var(--console-text, #e2e8f0);
+            filter: drop-shadow(0 0 10px var(--console-glow, rgba(100, 255, 218, 0.3)));
         }
 
         /* Console output line */
@@ -1193,8 +1191,7 @@
             }
 
             .ascii-art {
-                font-size: 0.38rem;
-                line-height: 1.1;
+                height: 32px;
             }
 
             .console-titlebar {
@@ -1263,12 +1260,7 @@
                 <span class="console-datetime" id="console-datetime">--:-- · ---</span>
             </div>
             <div class="console-body">
-                <pre class="ascii-art">██████╗ ██████╗   ██╗    ██╗████████╗███████╗
-██╔══██╗╚════██╗  ██║    ██║╚══██╔══╝██╔════╝
-██████╔╝ █████╔╝  ██║ █╗ ██║   ██║   █████╗
-██╔══██╗ ╚═══██╗  ██║███╗██║   ██║   ██╔══╝
-██████╔╝██████╔╝  ╚███╔███╔╝   ██║   ██║
-╚═════╝ ╚═════╝   ╚══╝╚══╝    ╚═╝   ╚═╝</pre>
+                <img src="b3wtf-logo.svg" alt="B3.WTF" class="ascii-art">
             </div>
             <div class="console-output">
                 <span class="console-prompt">❯</span>
