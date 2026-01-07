@@ -7,65 +7,98 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* GitHub-inspired Light Theme */
-            --bg-primary: #f6f8fa;
-            --bg-secondary: #ffffff;
-            --bg-tertiary: #f6f8fa;
-            --bg-canvas: #ffffff;
-            --border-color: #d0d7de;
-            --border-hover: #1f2328;
-            --text-primary: #1f2328;
-            --text-secondary: #656d76;
-            --text-muted: #8b949e;
+            /* Dark Mode First - Default */
+            --bg-base: #09090b;
+            --bg-surface: #18181b;
+            --bg-elevated: #27272a;
+            --bg-hover: #3f3f46;
 
-            /* Accent colors - GitHub style */
-            --accent-green: #1a7f37;
-            --accent-green-bg: #dafbe1;
-            --accent-blue: #0969da;
-            --accent-blue-bg: #ddf4ff;
-            --accent-purple: #8250df;
-            --accent-purple-bg: #fbefff;
-            --accent-orange: #bf8700;
-            --accent-orange-bg: #fff8c5;
-            --accent-red: #cf222e;
-            --accent-red-bg: #ffebe9;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.15);
+            --border-subtle: rgba(255, 255, 255, 0.04);
 
-            /* Shadows & Effects */
-            --shadow-sm: 0 1px 0 rgba(31,35,40,0.04);
-            --shadow-md: 0 3px 6px rgba(140,149,159,0.15);
-            --shadow-lg: 0 8px 24px rgba(140,149,159,0.2);
-            --border-radius: 6px;
-            --border-radius-lg: 12px;
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --text-faint: #52525b;
+
+            /* Accent - Orange/Amber */
+            --accent: #f59e0b;
+            --accent-hover: #fbbf24;
+            --accent-muted: rgba(245, 158, 11, 0.15);
+            --accent-glow: rgba(245, 158, 11, 0.4);
+
+            /* Semantic */
+            --success: #22c55e;
+            --success-muted: rgba(34, 197, 94, 0.15);
+            --warning: #eab308;
+            --error: #ef4444;
+            --info: #3b82f6;
+            --purple: #a855f7;
+
+            /* Shadows */
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 60px var(--accent-glow);
+
+            /* Radius - Sharp system */
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-full: 9999px;
+
+            /* Spacing */
+            --space-1: 4px;
+            --space-2: 8px;
+            --space-3: 12px;
+            --space-4: 16px;
+            --space-5: 20px;
+            --space-6: 24px;
+            --space-8: 32px;
+            --space-10: 40px;
+            --space-12: 48px;
+
+            /* Typography */
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+            /* Animation */
+            --ease-out: cubic-bezier(0.25, 1, 0.5, 1);
+            --duration-fast: 150ms;
+            --duration-normal: 200ms;
         }
 
-        /* Dark mode */
-        [data-theme="dark"] {
-            --bg-primary: #0d1117;
-            --bg-secondary: #161b22;
-            --bg-tertiary: #21262d;
-            --bg-canvas: #0d1117;
-            --border-color: #30363d;
-            --border-hover: #8b949e;
-            --text-primary: #e6edf3;
-            --text-secondary: #8b949e;
-            --text-muted: #6e7681;
+        /* Light Mode */
+        [data-theme="light"] {
+            --bg-base: #fafafa;
+            --bg-surface: #ffffff;
+            --bg-elevated: #f4f4f5;
+            --bg-hover: #e4e4e7;
 
-            --accent-green: #3fb950;
-            --accent-green-bg: #238636;
-            --accent-blue: #58a6ff;
-            --accent-blue-bg: #1f6feb;
-            --accent-purple: #a371f7;
-            --accent-purple-bg: #8957e5;
-            --accent-orange: #d29922;
-            --accent-orange-bg: #9e6a03;
-            --accent-red: #f85149;
-            --accent-red-bg: #da3633;
+            --border: rgba(0, 0, 0, 0.08);
+            --border-hover: rgba(0, 0, 0, 0.15);
+            --border-subtle: rgba(0, 0, 0, 0.04);
 
-            --shadow-sm: 0 0 transparent;
-            --shadow-md: 0 3px 6px rgba(0,0,0,0.3);
-            --shadow-lg: 0 8px 24px rgba(0,0,0,0.4);
+            --text-primary: #18181b;
+            --text-secondary: #52525b;
+            --text-muted: #71717a;
+            --text-faint: #a1a1aa;
+
+            --accent-muted: rgba(245, 158, 11, 0.1);
+            --accent-glow: rgba(245, 158, 11, 0.25);
+
+            --success-muted: rgba(34, 197, 94, 0.1);
+
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
         }
 
         * {
@@ -76,537 +109,406 @@
 
         html {
             font-size: 14px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
-            background: var(--bg-primary);
+            font-family: var(--font-sans);
+            background: var(--bg-base);
             color: var(--text-primary);
             min-height: 100vh;
             line-height: 1.5;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 24px;
-        }
-
-        /* Console Terminal Header */
-        .ascii-header {
-            margin-bottom: 24px;
-            background: var(--console-bg, #0a0e14);
-            border: 1px solid var(--console-border, #1a1f2e);
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
-            font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-        }
-
-        /* CRT scanline effect */
-        .ascii-header::before {
-            content: '';
-            position: absolute;
+        /* ========== Navigation Bar ========== */
+        .nav {
+            position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            bottom: 0;
-            background: repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 2px,
-                rgba(0, 0, 0, 0.1) 2px,
-                rgba(0, 0, 0, 0.1) 4px
-            );
-            pointer-events: none;
-            z-index: 10;
-        }
-
-        /* Terminal title bar */
-        .console-titlebar {
+            height: 56px;
+            background: rgba(9, 9, 11, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 8px 12px;
-            background: var(--console-titlebar, #151a24);
-            border-bottom: 1px solid var(--console-border, #1a1f2e);
+            padding: 0 var(--space-6);
+            z-index: 100;
         }
 
-        .console-dots {
+        [data-theme="light"] .nav {
+            background: rgba(250, 250, 250, 0.85);
+        }
+
+        .nav-brand {
+            font-size: 18px;
+            font-weight: 700;
+            color: #6b6b6b;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-brand span {
+            color: #6b6b6b;
+        }
+
+        [data-theme="light"] .nav-brand,
+        [data-theme="light"] .nav-brand span {
+            color: #5a5a5a;
+        }
+
+        .nav-controls {
             display: flex;
-            gap: 6px;
+            align-items: center;
+            gap: var(--space-2);
         }
 
-        .console-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            opacity: 0.8;
+        .nav-btn {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--duration-fast) var(--ease-out);
         }
 
-        .console-dot.red { background: #ff5f57; }
-        .console-dot.yellow { background: #febc2e; }
-        .console-dot.green { background: #28c840; }
-
-        .console-title {
-            font-size: 11px;
-            color: var(--console-muted, #4a5568);
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
+        .nav-btn:hover {
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+            border-color: var(--border-hover);
         }
 
-        .console-datetime {
-            font-size: 11px;
-            color: var(--console-accent, #64ffda);
-            letter-spacing: 0.5px;
+        .nav-btn svg {
+            width: 18px;
+            height: 18px;
         }
 
-        /* Main console body */
-        .console-body {
-            padding: 16px 20px;
+        .profile-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-full);
+            overflow: hidden;
+            border: 2px solid var(--border);
+            background: var(--bg-elevated);
+            cursor: pointer;
+            transition: all var(--duration-fast) var(--ease-out);
+        }
+
+        .profile-btn:hover {
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        .profile-btn img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-btn .placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--accent-muted), var(--bg-elevated));
+            color: var(--text-muted);
+        }
+
+        .theme-btn .sun-icon { display: none; }
+        .theme-btn .moon-icon { display: block; }
+        [data-theme="light"] .theme-btn .sun-icon { display: block; }
+        [data-theme="light"] .theme-btn .moon-icon { display: none; }
+
+        /* ========== Main Container ========== */
+        .main {
+            padding-top: 56px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-8) var(--space-6);
+        }
+
+        /* ========== Hero Section with Animated Glow ========== */
+        .hero {
+            text-align: center;
+            padding: var(--space-6) 0 var(--space-4);
             position: relative;
         }
 
-        .ascii-art {
-            display: block;
-            margin: 0 auto;
-            height: 48px;
-            width: auto;
-            color: var(--console-text, #e2e8f0);
-            filter: drop-shadow(0 0 10px var(--console-glow, rgba(100, 255, 218, 0.3)));
+        .hero-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 100px;
+            background: var(--accent);
+            filter: blur(60px);
+            opacity: 0.25;
+            animation: glow-pulse 4s ease-in-out infinite;
+            pointer-events: none;
         }
 
-        /* Console output line */
-        .console-output {
-            display: flex;
+        @keyframes glow-pulse {
+            0%, 100% {
+                opacity: 0.2;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                opacity: 0.4;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-brand {
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: var(--space-3);
+            color: #6b6b6b;
+        }
+
+        [data-theme="light"] .hero-brand {
+            color: #5a5a5a;
+        }
+
+        .hero-time {
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: var(--space-1);
+        }
+
+        .hero-date {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .hero-ticker {
+            margin-top: var(--space-3);
+            display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 10px 12px;
-            background: var(--console-output-bg, rgba(0, 0, 0, 0.3));
-            border-top: 1px solid var(--console-border, #1a1f2e);
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-4);
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-full);
             font-size: 12px;
+            color: var(--text-muted);
         }
 
-        .console-prompt {
-            color: var(--console-accent, #64ffda);
-            flex-shrink: 0;
+        .hero-ticker-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: var(--radius-full);
+            animation: ticker-blink 2s infinite;
         }
 
-        .console-path {
-            color: var(--console-blue, #82aaff);
-            flex-shrink: 0;
+        @keyframes ticker-blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
         }
 
-        .console-separator {
-            color: var(--console-muted, #4a5568);
-        }
-
-        .ccb-news-ticker {
-            color: var(--console-dim, #8892b0);
+        .hero-ticker a {
+            color: var(--text-secondary);
             text-decoration: none;
-            flex: 1;
+            transition: color var(--duration-fast);
+            max-width: 400px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            transition: color 0.2s ease;
         }
 
-        .ccb-news-ticker:hover {
-            color: var(--console-text, #e2e8f0);
+        .hero-ticker a:hover {
+            color: var(--accent);
         }
 
-        .cursor {
-            display: inline-block;
-            width: 7px;
-            height: 14px;
-            background: var(--console-accent, #64ffda);
-            animation: blink 1s step-end infinite;
-            flex-shrink: 0;
-            opacity: 0.9;
-        }
-
-        @keyframes blink {
-            0%, 50% { opacity: 0.9; }
-            51%, 100% { opacity: 0; }
-        }
-
-        /* Light mode console theme */
-        :root {
-            --console-bg: #f6f8fa;
-            --console-titlebar: #ffffff;
-            --console-border: #d0d7de;
-            --console-text: #1f2328;
-            --console-muted: #656d76;
-            --console-dim: #656d76;
-            --console-accent: #1a7f37;
-            --console-blue: #0969da;
-            --console-glow: rgba(26, 127, 55, 0.1);
-            --console-output-bg: rgba(0, 0, 0, 0.03);
-        }
-
-        /* Dark mode console theme */
-        [data-theme="dark"] {
-            --console-bg: #0d1117;
-            --console-titlebar: #161b22;
-            --console-border: #30363d;
-            --console-text: #e6edf3;
-            --console-muted: #6e7681;
-            --console-dim: #8b949e;
-            --console-accent: #7ee787;
-            --console-blue: #58a6ff;
-            --console-glow: rgba(126, 231, 135, 0.25);
-            --console-output-bg: rgba(0, 0, 0, 0.3);
-        }
-
-        /* Fun Reddit Post Box */
-        .fun-post-section {
-            margin-bottom: 24px;
-        }
-
-        .fun-post-container {
+        /* ========== Search ========== */
+        .search-section {
             max-width: 600px;
-            margin: 0 auto;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            transition: box-shadow 0.2s ease, border-color 0.2s ease;
+            margin: 0 auto var(--space-8);
         }
 
-        .fun-post-container:hover {
-            box-shadow: var(--shadow-md);
-            border-color: var(--border-hover);
-        }
-
-        .fun-post-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 16px;
-            border-bottom: 1px solid var(--border-color);
-            background: var(--bg-tertiary);
-        }
-
-        .fun-post-title {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .fun-post-title svg {
-            color: #ff4500;
-        }
-
-        .fun-post-refresh {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            cursor: pointer;
-            padding: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: var(--border-radius);
-            transition: all 0.2s ease;
-        }
-
-        .fun-post-refresh:hover {
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-            border-color: var(--border-hover);
-        }
-
-        .fun-post-refresh.spinning svg {
-            animation: spin 0.5s ease;
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .fun-post-body {
-            padding: 16px;
-            min-height: 100px;
-        }
-
-        .fun-post-content {
-            display: flex;
-            gap: 16px;
-            align-items: flex-start;
-        }
-
-        .fun-post-image {
-            flex-shrink: 0;
-            width: 100px;
-            height: 100px;
-            border-radius: var(--border-radius);
-            border: 1px solid var(--border-color);
-            object-fit: cover;
-            background: var(--bg-tertiary);
-        }
-
-        .fun-post-no-image {
-            flex-shrink: 0;
-            width: 100px;
-            height: 100px;
-            border-radius: var(--border-radius);
-            border: 1px solid var(--border-color);
-            background: linear-gradient(135deg, var(--accent-orange-bg), var(--accent-purple-bg));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-        }
-
-        .fun-post-text {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .fun-post-text h3 {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 6px;
-            line-height: 1.4;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .fun-post-meta {
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-        }
-
-        .fun-post-meta .subreddit {
-            color: var(--accent-blue);
-            font-weight: 500;
-        }
-
-        .fun-post-stats {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-bottom: 10px;
-        }
-
-        .fun-post-stats span {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .fun-post-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            font-size: 12px;
-            color: var(--accent-blue);
-            text-decoration: none;
-            font-weight: 500;
-            transition: text-decoration 0.15s;
-        }
-
-        .fun-post-link:hover {
-            text-decoration: underline;
-        }
-
-        /* Repo Search */
-        .repo-search-section {
-            margin-bottom: 24px;
-        }
-
-        .repo-search-container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .repo-search-input-wrapper {
+        .search-wrapper {
             position: relative;
         }
 
-        .repo-search-input-wrapper svg {
+        .search-icon {
             position: absolute;
-            left: 12px;
+            left: var(--space-4);
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-muted);
             pointer-events: none;
         }
 
-        .repo-search-input {
+        .search-input {
             width: 100%;
-            padding: 10px 12px 10px 36px;
-            font-family: inherit;
+            padding: var(--space-3) var(--space-4) var(--space-3) 44px;
+            font-family: var(--font-sans);
             font-size: 14px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
             color: var(--text-primary);
-            transition: all 0.2s ease;
+            transition: all var(--duration-fast) var(--ease-out);
         }
 
-        .repo-search-input:focus {
+        .search-input:focus {
             outline: none;
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.15);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-muted);
         }
 
-        .repo-search-input::placeholder {
+        .search-input::placeholder {
             color: var(--text-muted);
         }
 
-        .repo-search-results {
-            margin-top: 8px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            display: none;
+        .search-results {
+            position: absolute;
+            top: calc(100% + var(--space-2));
+            left: 0;
+            right: 0;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
             box-shadow: var(--shadow-lg);
+            display: none;
+            z-index: 50;
+            max-height: 400px;
+            overflow-y: auto;
         }
 
-        .repo-search-results.has-results {
+        .search-results.has-results {
             display: block;
         }
 
-        .repo-search-results .github-item {
-            margin: 0;
-            border-radius: 0;
-            border: none;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .repo-search-results .github-item:last-child {
-            border-bottom: none;
-        }
-
-        .repo-owner {
-            color: var(--text-muted);
-            font-weight: 400;
-        }
-
-        .repo-stars {
-            color: var(--accent-orange);
-        }
-
-        /* Dashboard Grid */
+        /* ========== Dashboard Grid ========== */
         .dashboard {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 24px;
-            margin-bottom: 24px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-4);
+            margin-bottom: var(--space-6);
         }
 
+        @media (max-width: 1024px) {
+            .dashboard {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ========== Cards ========== */
         .card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
             overflow: hidden;
-            transition: box-shadow 0.2s ease, border-color 0.2s ease;
+            transition: border-color var(--duration-fast) var(--ease-out);
         }
 
         .card:hover {
-            box-shadow: var(--shadow-md);
+            border-color: var(--border-hover);
         }
 
         .card-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 12px 16px;
-            border-bottom: 1px solid var(--border-color);
-            background: var(--bg-tertiary);
+            padding: var(--space-4);
+            border-bottom: 1px solid var(--border-subtle);
         }
 
         .card-title {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 14px;
+            gap: var(--space-2);
+            font-size: 13px;
             font-weight: 600;
             color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
         }
 
-        .card-icon {
+        .card-title svg {
             width: 16px;
             height: 16px;
         }
 
-        .card-icon.issues {
-            color: var(--accent-green);
-        }
-
-        .card-icon.prs {
-            color: var(--accent-purple);
-        }
-
-        .card-icon.calendar {
-            color: var(--accent-blue);
-        }
+        .card-title.issues svg { color: var(--success); }
+        .card-title.prs svg { color: var(--purple); }
+        .card-title.calendar svg { color: var(--info); }
 
         .card-badge {
-            font-size: 12px;
-            font-weight: 500;
-            padding: 2px 8px;
-            background: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            padding: var(--space-1) var(--space-2);
+            background: var(--bg-elevated);
+            border-radius: var(--radius-sm);
             color: var(--text-secondary);
+            font-family: var(--font-mono);
         }
 
         .card-toggle {
             display: flex;
             gap: 2px;
-            background: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
+            background: var(--bg-base);
+            border-radius: var(--radius-sm);
             padding: 2px;
         }
 
         .card-toggle-btn {
             font-size: 11px;
             font-weight: 500;
-            padding: 4px 10px;
+            padding: var(--space-1) var(--space-2);
             background: transparent;
             border: none;
             border-radius: 4px;
-            color: var(--text-secondary);
+            color: var(--text-muted);
             cursor: pointer;
-            transition: all 0.15s ease;
+            transition: all var(--duration-fast) var(--ease-out);
             white-space: nowrap;
         }
 
         .card-toggle-btn:hover {
-            color: var(--text-primary);
-            background: var(--bg-tertiary);
+            color: var(--text-secondary);
         }
 
         .card-toggle-btn.active {
-            background: var(--bg-secondary);
+            background: var(--bg-surface);
             color: var(--text-primary);
-            box-shadow: var(--shadow-sm);
         }
 
         .card-body {
-            padding: 8px;
-            max-height: 350px;
+            padding: var(--space-2);
+            max-height: 340px;
             overflow-y: auto;
         }
 
         .card-body::-webkit-scrollbar {
-            width: 6px;
+            width: 4px;
         }
 
         .card-body::-webkit-scrollbar-track {
@@ -614,123 +516,97 @@
         }
 
         .card-body::-webkit-scrollbar-thumb {
-            background: var(--border-color);
-            border-radius: 3px;
+            background: var(--border);
+            border-radius: 2px;
         }
 
-        .card-body::-webkit-scrollbar-thumb:hover {
-            background: var(--text-muted);
-        }
-
-        /* GitHub Items */
-        .github-item {
+        /* ========== List Items (GitHub/Calendar) ========== */
+        .list-item {
             display: flex;
             align-items: flex-start;
-            gap: 12px;
-            padding: 12px;
-            margin: 0;
-            border-radius: var(--border-radius);
-            background: transparent;
-            transition: background 0.15s ease;
-            cursor: pointer;
+            gap: var(--space-3);
+            padding: var(--space-3);
+            border-radius: var(--radius-md);
             text-decoration: none;
             color: inherit;
-            border: none;
+            transition: background var(--duration-fast) var(--ease-out);
         }
 
-        .github-item:hover {
-            background: var(--bg-tertiary);
+        .list-item:hover {
+            background: var(--bg-elevated);
         }
 
-        .github-item + .github-item {
-            margin-top: 0;
-        }
-
-        .item-icon {
+        .list-item-icon {
             flex-shrink: 0;
             width: 16px;
             height: 16px;
             margin-top: 2px;
         }
 
-        .item-icon.issue {
-            color: var(--accent-green);
-        }
+        .list-item-icon.issue { color: var(--success); }
+        .list-item-icon.pr { color: var(--purple); }
+        .list-item-icon.calendar { color: var(--info); }
+        .list-item-icon.repo { color: var(--accent); }
 
-        .item-icon.pr {
-            color: var(--accent-purple);
-        }
-
-        .item-icon.pr-merged {
-            color: var(--accent-purple);
-        }
-
-        .item-icon.pr-draft {
-            color: var(--text-muted);
-        }
-
-        .item-content {
+        .list-item-content {
             flex: 1;
             min-width: 0;
         }
 
-        .item-title {
-            font-size: 14px;
+        .list-item-title {
+            font-size: 13px;
             font-weight: 500;
             color: var(--text-primary);
-            margin-bottom: 4px;
+            margin-bottom: 2px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
 
-        .github-item:hover .item-title {
-            color: var(--accent-blue);
+        .list-item:hover .list-item-title {
+            color: var(--accent);
         }
 
-        .item-meta {
+        .list-item-meta {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 12px;
+            gap: var(--space-2);
+            font-size: 11px;
             color: var(--text-muted);
+            font-family: var(--font-mono);
         }
 
-        .item-repo {
-            color: var(--text-secondary);
-        }
+        .list-item-meta .repo { color: var(--text-secondary); }
+        .list-item-meta .assignee { color: var(--accent); }
+        .list-item-meta .countdown { color: var(--accent); }
+        .list-item-meta .review { color: var(--warning); }
+        .list-item-meta .stars { color: var(--warning); }
 
-        .item-assignee {
-            color: var(--accent-blue);
-            font-weight: 500;
-        }
-
-        .item-labels {
+        .list-item-labels {
             display: flex;
-            gap: 4px;
-            margin-top: 6px;
+            gap: var(--space-1);
+            margin-top: var(--space-1);
             flex-wrap: wrap;
         }
 
         .label {
-            font-size: 11px;
-            padding: 2px 6px;
-            border-radius: 20px;
+            font-size: 10px;
             font-weight: 500;
-            border: none;
+            padding: 2px 6px;
+            border-radius: var(--radius-full);
         }
 
-        /* Empty States */
+        /* ========== Empty & Loading States ========== */
         .empty-state {
             text-align: center;
-            padding: 32px 16px;
+            padding: var(--space-8) var(--space-4);
             color: var(--text-muted);
         }
 
         .empty-icon {
-            font-size: 32px;
-            margin-bottom: 12px;
+            font-size: 28px;
+            margin-bottom: var(--space-3);
             opacity: 0.6;
         }
 
@@ -738,14 +614,11 @@
             font-size: 13px;
         }
 
-        /* Loading State */
         .loading {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            padding: 32px;
-            color: var(--text-muted);
+            padding: var(--space-8);
         }
 
         .loading-dots {
@@ -754,98 +627,255 @@
         }
 
         .loading-dots span {
-            width: 8px;
-            height: 8px;
-            background: var(--accent-blue);
-            border-radius: 50%;
-            animation: loadingDot 1.4s infinite ease-in-out both;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: var(--radius-full);
+            animation: loading-dot 1.4s infinite ease-in-out both;
         }
 
         .loading-dots span:nth-child(1) { animation-delay: -0.32s; }
         .loading-dots span:nth-child(2) { animation-delay: -0.16s; }
         .loading-dots span:nth-child(3) { animation-delay: 0; }
 
-        @keyframes loadingDot {
+        @keyframes loading-dot {
             0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
             40% { transform: scale(1); opacity: 1; }
         }
 
-        /* Floating Buttons Container */
-        .floating-buttons {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
+        /* ========== Reddit Section with Image ========== */
+        .fun-row {
             display: flex;
-            gap: 8px;
-            z-index: 100;
+            gap: var(--space-4);
+            margin-bottom: var(--space-6);
+            flex-wrap: wrap;
         }
 
-        /* Settings Button */
-        .settings-btn {
-            width: 40px;
-            height: 40px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 50%;
-            color: var(--text-secondary);
-            cursor: pointer;
+        .fun-widget {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--shadow-md);
-            transition: all 0.2s ease;
+            gap: var(--space-4);
+            padding: var(--space-4);
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            flex: 1;
+            min-width: 320px;
+            max-width: 600px;
+            align-items: stretch;
         }
 
-        .settings-btn:hover {
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-            border-color: var(--border-hover);
-            transform: rotate(30deg);
-        }
-
-        /* Theme Toggle Button */
-        .theme-btn {
-            width: 40px;
-            height: 40px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 50%;
-            color: var(--text-secondary);
-            cursor: pointer;
+        .fun-widget-image {
+            width: 120px;
+            height: 90px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            flex-shrink: 0;
+            background: var(--bg-elevated);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: var(--shadow-md);
-            transition: all 0.2s ease;
         }
 
-        .theme-btn:hover {
-            background: var(--bg-tertiary);
+        .fun-widget-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .fun-widget-image .placeholder {
+            color: var(--text-muted);
+            font-size: 24px;
+        }
+
+        .fun-widget-body {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .fun-widget-meta {
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--space-1);
+        }
+
+        .fun-widget-title {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.4;
+        }
+
+        .fun-widget-title a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .fun-widget-title a:hover {
+            color: var(--accent);
+        }
+
+        .fun-widget-refresh {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all var(--duration-fast) var(--ease-out);
+            flex-shrink: 0;
+            align-self: flex-start;
+        }
+
+        .fun-widget-refresh:hover {
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+        }
+
+        .fun-widget-refresh.spinning svg {
+            animation: spin 0.5s ease;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* ========== Quick Links ========== */
+        .quick-links {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-2);
+            flex-wrap: wrap;
+            margin-bottom: var(--space-8);
+        }
+
+        .quick-link {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-3);
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-full);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+            transition: all var(--duration-fast) var(--ease-out);
+        }
+
+        .quick-link:hover {
+            background: var(--bg-elevated);
             color: var(--text-primary);
             border-color: var(--border-hover);
         }
 
-        .theme-btn .sun-icon {
-            display: none;
+        .quick-link svg {
+            width: 14px;
+            height: 14px;
         }
 
-        .theme-btn .moon-icon {
-            display: block;
+        .quick-link.dragging {
+            opacity: 0.5;
         }
 
-        [data-theme="dark"] .theme-btn .sun-icon {
-            display: block;
+        .quick-link.drag-over {
+            border-color: var(--accent);
         }
 
-        [data-theme="dark"] .theme-btn .moon-icon {
-            display: none;
+        /* ========== Status Bar ========== */
+        .status-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-6);
+            padding: var(--space-4);
+            font-size: 11px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-subtle);
         }
 
-        /* Modal */
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: var(--radius-full);
+            background: var(--text-muted);
+        }
+
+        .status-dot.connected { background: var(--success); }
+        .status-dot.disconnected { background: var(--error); }
+
+        .status-quote {
+            max-width: 400px;
+            font-style: italic;
+            opacity: 0.7;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* ========== Calendar Status ========== */
+        .calendar-status {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .calendar-reconnect {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: var(--space-1) var(--space-2);
+            font-family: var(--font-sans);
+            font-size: 11px;
+            font-weight: 500;
+            background: var(--error);
+            border: none;
+            border-radius: var(--radius-sm);
+            color: white;
+            cursor: pointer;
+            transition: background var(--duration-fast);
+        }
+
+        .calendar-reconnect:hover {
+            background: #dc2626;
+        }
+
+        .calendar-expiry-warning {
+            font-size: 11px;
+            color: var(--warning);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* ========== Modal ========== */
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(27, 31, 36, 0.5);
+            background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(4px);
             display: flex;
             align-items: center;
@@ -853,7 +883,7 @@
             z-index: 1000;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.2s ease;
+            transition: all var(--duration-normal) var(--ease-out);
         }
 
         .modal-overlay.active {
@@ -862,16 +892,16 @@
         }
 
         .modal {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius-lg);
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
             width: 100%;
-            max-width: 480px;
+            max-width: 440px;
             max-height: 90vh;
             overflow-y: auto;
             box-shadow: var(--shadow-lg);
             transform: scale(0.95) translateY(10px);
-            transition: transform 0.15s ease;
+            transition: transform var(--duration-normal) var(--ease-out);
         }
 
         .modal-overlay.active .modal {
@@ -882,39 +912,41 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 16px 20px;
-            border-bottom: 1px solid var(--border-color);
-            background: var(--bg-tertiary);
+            padding: var(--space-4) var(--space-5);
+            border-bottom: 1px solid var(--border);
         }
 
         .modal-title {
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 600;
             color: var(--text-primary);
         }
 
         .modal-close {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background: transparent;
             border: none;
+            border-radius: var(--radius-sm);
             color: var(--text-muted);
             cursor: pointer;
-            padding: 4px;
-            display: flex;
-            border-radius: var(--border-radius);
-            transition: all 0.15s ease;
+            transition: all var(--duration-fast) var(--ease-out);
         }
 
         .modal-close:hover {
-            background: var(--bg-primary);
+            background: var(--bg-elevated);
             color: var(--text-primary);
         }
 
         .modal-body {
-            padding: 20px;
+            padding: var(--space-5);
         }
 
         .form-group {
-            margin-bottom: 16px;
+            margin-bottom: var(--space-4);
         }
 
         .form-group:last-child {
@@ -923,21 +955,21 @@
 
         .form-label {
             display: block;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: var(--space-2);
             color: var(--text-primary);
         }
 
         .form-hint {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-muted);
-            margin-top: 6px;
+            margin-top: var(--space-2);
             line-height: 1.5;
         }
 
         .form-hint a {
-            color: var(--accent-blue);
+            color: var(--accent);
             text-decoration: none;
         }
 
@@ -946,9 +978,9 @@
         }
 
         .form-hint code {
-            font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
-            font-size: 11px;
-            background: var(--bg-tertiary);
+            font-family: var(--font-mono);
+            font-size: 10px;
+            background: var(--bg-elevated);
             padding: 2px 5px;
             border-radius: 4px;
             color: var(--text-secondary);
@@ -956,20 +988,20 @@
 
         .form-input {
             width: 100%;
-            padding: 8px 12px;
-            font-family: inherit;
-            font-size: 14px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
+            padding: var(--space-2) var(--space-3);
+            font-family: var(--font-sans);
+            font-size: 13px;
+            background: var(--bg-base);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
             color: var(--text-primary);
-            transition: all 0.2s ease;
+            transition: all var(--duration-fast) var(--ease-out);
         }
 
         .form-input:focus {
             outline: none;
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.15);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-muted);
         }
 
         .form-input::placeholder {
@@ -980,445 +1012,236 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            padding: 8px 16px;
-            font-family: inherit;
-            font-size: 14px;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-4);
+            font-family: var(--font-sans);
+            font-size: 13px;
             font-weight: 500;
-            border-radius: var(--border-radius);
+            border-radius: var(--radius-md);
             cursor: pointer;
-            transition: all 0.15s ease;
+            transition: all var(--duration-fast) var(--ease-out);
         }
 
         .btn-primary {
-            background: var(--accent-green);
-            border: 1px solid var(--accent-green);
-            color: #ffffff;
+            background: var(--accent);
+            border: 1px solid var(--accent);
+            color: #000;
         }
 
         .btn-primary:hover {
-            background: #15803d;
-            border-color: #15803d;
-        }
-
-        [data-theme="dark"] .btn-primary {
-            background: #238636;
-            border-color: #238636;
-        }
-
-        [data-theme="dark"] .btn-primary:hover {
-            background: #2ea043;
-            border-color: #2ea043;
+            background: var(--accent-hover);
+            border-color: var(--accent-hover);
         }
 
         .btn-block {
             width: 100%;
         }
 
-        /* Status indicator */
-        .status-bar {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 24px;
-            padding: 16px;
-            font-size: 12px;
-            color: var(--text-muted);
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            margin-top: 24px;
-        }
-
-        .status-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--text-muted);
-        }
-
-        .status-dot.connected {
-            background: var(--accent-green);
-        }
-
-        .status-dot.disconnected {
-            background: var(--accent-red);
-        }
-
-        /* Quick Links */
-        .quick-links {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 24px;
-            flex-wrap: wrap;
-        }
-
-        .quick-link {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 8px 12px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 500;
-            transition: all 0.15s ease;
-        }
-
-        .quick-link:hover {
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-            border-color: var(--border-hover);
-        }
-
-        .quick-link.dragging {
-            opacity: 0.5;
-            cursor: grabbing;
-        }
-
-        .quick-link.drag-over {
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 0 2px rgba(9, 105, 218, 0.15);
-        }
-
-        .quick-links.drag-active .quick-link {
-            cursor: grab;
-        }
-
-        /* Profile Picture */
-        .profile-link {
-            position: fixed;
-            top: 24px;
-            right: 24px;
-            z-index: 100;
-        }
-
-        .profile-pic {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid var(--bg-secondary);
-            object-fit: cover;
-            box-shadow: var(--shadow-md);
-            transition: all 0.2s ease;
-            background: var(--bg-secondary);
-        }
-
-        .profile-pic:hover {
-            box-shadow: var(--shadow-lg);
-            transform: scale(1.05);
-        }
-
-        .profile-placeholder {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid var(--bg-secondary);
-            background: linear-gradient(135deg, var(--accent-blue-bg), var(--accent-purple-bg));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent-blue);
-            box-shadow: var(--shadow-md);
-            transition: all 0.2s ease;
-        }
-
-        .profile-placeholder:hover {
-            box-shadow: var(--shadow-lg);
-            transform: scale(1.05);
-        }
-
-        /* Calendar reconnect button */
-        .calendar-reconnect {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 4px 10px;
-            font-family: inherit;
-            font-size: 12px;
-            font-weight: 500;
-            background: var(--accent-red);
-            border: none;
-            border-radius: var(--border-radius);
-            color: #ffffff;
-            cursor: pointer;
-            transition: all 0.15s ease;
-        }
-
-        .calendar-reconnect:hover {
-            background: #b91c1c;
-        }
-
-        [data-theme="dark"] .calendar-reconnect {
-            background: #da3633;
-        }
-
-        [data-theme="dark"] .calendar-reconnect:hover {
-            background: #f85149;
-        }
-
-        .calendar-status {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .calendar-expiry-warning {
-            font-size: 12px;
-            color: var(--accent-orange);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        /* Responsive */
+        /* ========== Responsive ========== */
         @media (max-width: 768px) {
             .container {
-                padding: 16px;
+                padding: var(--space-4);
             }
 
-            .ascii-art {
-                height: 32px;
+            .hero {
+                padding: var(--space-4) 0 var(--space-3);
             }
 
-            .console-titlebar {
-                padding: 6px 10px;
+            .hero-brand {
+                font-size: 32px;
             }
 
-            .console-title {
+            .hero-time {
+                font-size: 16px;
+            }
+
+            .hero-ticker {
+                max-width: 90%;
+            }
+
+            .hero-ticker a {
+                max-width: 200px;
+            }
+
+            .fun-widget {
+                max-width: none;
+            }
+
+            .status-bar {
+                flex-wrap: wrap;
+                gap: var(--space-3);
+            }
+
+            .status-quote {
                 display: none;
             }
 
-            .console-body {
-                padding: 12px 10px;
-            }
-
-            .console-output {
-                padding: 8px 10px;
-                font-size: 11px;
-            }
-
-            .dashboard {
-                grid-template-columns: 1fr;
-            }
-
-            .quick-links {
-                gap: 6px;
-            }
-
-            .quick-link span:last-child {
-                display: none;
-            }
-
-            .floating-buttons {
-                bottom: 16px;
-                right: 16px;
-            }
-
-            .profile-link {
-                top: 16px;
-                right: 16px;
+            .nav {
+                padding: 0 var(--space-4);
             }
         }
     </style>
 </head>
 <body>
-    <!-- Profile Picture -->
-    <a href="https://github.com/berthuygens?tab=repositories" class="profile-link" id="profile-link" title="Profile">
-        <div class="profile-placeholder" id="profile-placeholder">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-            </svg>
-        </div>
-        <img src="" alt="Profile" class="profile-pic" id="profile-pic" style="display: none;">
-    </a>
-
-    <div class="container">
-        <!-- Console Terminal Header -->
-        <header class="ascii-header">
-            <div class="console-titlebar">
-                <div class="console-dots">
-                    <span class="console-dot red"></span>
-                    <span class="console-dot yellow"></span>
-                    <span class="console-dot green"></span>
+    <!-- Navigation Bar -->
+    <nav class="nav">
+        <a href="#" class="nav-brand">B3<span>.wtf</span></a>
+        <div class="nav-controls">
+            <a href="https://github.com/berthuygens?tab=repositories" class="profile-btn" id="profile-link" title="Profile">
+                <div class="placeholder" id="profile-placeholder">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
                 </div>
-                <span class="console-title">b3.wtf — terminal</span>
-                <span class="console-datetime" id="console-datetime">--:-- · ---</span>
-            </div>
-            <div class="console-body">
-                <img src="b3wtf-logo.svg" alt="B3.WTF" class="ascii-art">
-            </div>
-            <div class="console-output">
-                <span class="console-prompt">❯</span>
-                <span class="console-path">~/feed</span>
-                <span class="console-separator">—</span>
-                <a href="#" id="ccb-news-ticker" class="ccb-news-ticker" target="_blank" rel="noopener">loading...</a>
-                <span class="cursor"></span>
-            </div>
-        </header>
+                <img src="" alt="Profile" id="profile-pic" style="display: none;">
+            </a>
+            <button class="nav-btn theme-btn" id="theme-btn" title="Toggle theme">
+                <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+                <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+            </button>
+            <button class="nav-btn" id="settings-btn" title="Settings">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
 
-        <!-- Fun Reddit Post -->
-        <section class="fun-post-section">
-            <div class="fun-post-container">
-                <div class="fun-post-header">
-                    <div class="fun-post-title">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
-                        </svg>
-                        Random Fun Post
+    <main class="main">
+        <div class="container">
+            <!-- Hero Section -->
+            <header class="hero">
+                <div class="hero-glow"></div>
+                <div class="hero-content">
+                    <h1 class="hero-brand">B3.wtf</h1>
+                    <div class="hero-time" id="hero-time">--:--</div>
+                    <div class="hero-date" id="hero-date">Loading...</div>
+                    <div class="hero-ticker">
+                        <span class="hero-ticker-dot"></span>
+                        <a href="#" id="ccb-news-ticker">loading...</a>
                     </div>
-                    <button class="fun-post-refresh" id="fun-post-refresh" title="Show another">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                </div>
+            </header>
+
+            <!-- Search -->
+            <section class="search-section">
+                <div class="search-wrapper">
+                    <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                    <input type="text" class="search-input" id="repo-search-input" placeholder="Search repos...">
+                    <div class="search-results" id="repo-search-results"></div>
+                </div>
+            </section>
+
+            <!-- Dashboard -->
+            <section class="dashboard">
+                <!-- Issues -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title issues">
+                            <svg viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
+                                <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"></path>
+                            </svg>
+                            Issues
+                        </div>
+                        <div class="card-toggle" id="issues-toggle">
+                            <button class="card-toggle-btn active" data-view="assigned">Assigned <span id="issues-assigned-count">0</span></button>
+                            <button class="card-toggle-btn" data-view="created">Created <span id="issues-created-count">0</span></button>
+                        </div>
+                    </div>
+                    <div class="card-body" id="issues-container">
+                        <div class="loading">
+                            <div class="loading-dots"><span></span><span></span><span></span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pull Requests -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title prs">
+                            <svg viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Z"></path>
+                            </svg>
+                            Pull Requests
+                        </div>
+                        <span class="card-badge" id="prs-count">0</span>
+                    </div>
+                    <div class="card-body" id="prs-container">
+                        <div class="loading">
+                            <div class="loading-dots"><span></span><span></span><span></span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calendar -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title calendar">
+                            <svg viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M4.5 0a.5.5 0 0 1 .5.5V1h6V.5a.5.5 0 0 1 1 0V1h1.5A1.5 1.5 0 0 1 15 2.5v11a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 13.5v-11A1.5 1.5 0 0 1 2.5 1H4V.5a.5.5 0 0 1 .5-.5ZM2.5 2a.5.5 0 0 0-.5.5V4h12V2.5a.5.5 0 0 0-.5-.5h-11ZM2 13.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V5H2v8.5Z"></path>
+                            </svg>
+                            Upcoming
+                        </div>
+                        <div class="calendar-status" id="calendar-status"></div>
+                    </div>
+                    <div class="card-body" id="calendar-container">
+                        <div class="loading">
+                            <div class="loading-dots"><span></span><span></span><span></span></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Fun Widget + Quick Links -->
+            <section class="fun-row">
+                <div class="fun-widget">
+                    <div class="fun-widget-image" id="fun-post-image">
+                        <span class="placeholder">🎲</span>
+                    </div>
+                    <div class="fun-widget-body" id="fun-post-body">
+                        <div class="fun-widget-meta">Random Fun</div>
+                        <div class="fun-widget-title"><a href="#">Loading...</a></div>
+                    </div>
+                    <button class="fun-widget-refresh" id="fun-post-refresh" title="Show another">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M21 12a9 9 0 11-9-9c2.52 0 4.93 1 6.74 2.74L21 8V3"></path>
                         </svg>
                     </button>
                 </div>
-                <div class="fun-post-body" id="fun-post-body">
-                    <div class="loading">
-                        <div class="loading-dots">
-                            <span></span><span></span><span></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Repo Search -->
-        <section class="repo-search-section">
-            <div class="repo-search-container">
-                <div class="repo-search-input-wrapper">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <path d="m21 21-4.35-4.35"></path>
-                    </svg>
-                    <input type="text" class="repo-search-input" id="repo-search-input"
-                           placeholder="Search repos in berthuygens & inbo...">
-                </div>
-                <div class="repo-search-results" id="repo-search-results"></div>
-            </div>
-        </section>
-
-        <!-- Dashboard -->
-        <section class="dashboard">
-            <!-- Issues -->
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">
-                        <svg class="card-icon issues" viewBox="0 0 16 16" fill="currentColor">
-                            <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
-                            <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"></path>
-                        </svg>
-                        Issues
-                    </div>
-                    <div class="card-toggle" id="issues-toggle">
-                        <button class="card-toggle-btn active" data-view="assigned">Assigned <span id="issues-assigned-count">0</span></button>
-                        <button class="card-toggle-btn" data-view="created">Created <span id="issues-created-count">0</span></button>
-                    </div>
-                </div>
-                <div class="card-body" id="issues-container">
-                    <div class="loading">
-                        <div class="loading-dots">
-                            <span></span><span></span><span></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Pull Requests -->
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">
-                        <svg class="card-icon prs" viewBox="0 0 16 16" fill="currentColor">
-                            <path d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Z"></path>
-                        </svg>
-                        Pull Requests
-                    </div>
-                    <span class="card-badge" id="prs-count">0</span>
-                </div>
-                <div class="card-body" id="prs-container">
-                    <div class="loading">
-                        <div class="loading-dots">
-                            <span></span><span></span><span></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Upcoming Meetings -->
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title">
-                        <svg class="card-icon calendar" viewBox="0 0 16 16" fill="currentColor">
-                            <path d="M4.5 0a.5.5 0 0 1 .5.5V1h6V.5a.5.5 0 0 1 1 0V1h1.5A1.5 1.5 0 0 1 15 2.5v11a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 13.5v-11A1.5 1.5 0 0 1 2.5 1H4V.5a.5.5 0 0 1 .5-.5ZM2.5 2a.5.5 0 0 0-.5.5V4h12V2.5a.5.5 0 0 0-.5-.5h-11ZM2 13.5a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5V5H2v8.5Z"></path>
-                        </svg>
-                        Upcoming
-                    </div>
-                    <div class="calendar-status" id="calendar-status"></div>
-                </div>
-                <div class="card-body" id="calendar-container">
-                    <div class="loading">
-                        <div class="loading-dots">
-                            <span></span><span></span><span></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             </section>
 
-        <!-- Quick Links -->
-        <nav class="quick-links" id="quick-links"></nav>
+            <!-- Quick Links -->
+            <nav class="quick-links" id="quick-links"></nav>
 
-        <!-- Status Bar -->
-        <footer class="status-bar">
-            <div class="status-item">
-                <span class="status-dot" id="github-status"></span>
-                <span>GitHub</span>
-            </div>
-                        <div class="status-item" id="last-updated"></div>
-            <div class="status-item" id="random-quote" style="font-style: italic; opacity: 0.8;"></div>
-        </footer>
-    </div>
-
-    <!-- Floating Buttons -->
-    <div class="floating-buttons">
-        <button class="theme-btn" id="theme-btn" title="Toggle theme">
-            <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-            <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="5"></circle>
-                <line x1="12" y1="1" x2="12" y2="3"></line>
-                <line x1="12" y1="21" x2="12" y2="23"></line>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                <line x1="1" y1="12" x2="3" y2="12"></line>
-                <line x1="21" y1="12" x2="23" y2="12"></line>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-        </button>
-        <button class="settings-btn" id="settings-btn" title="Settings">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="3"></circle>
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-            </svg>
-        </button>
-    </div>
+            <!-- Status Bar -->
+            <footer class="status-bar">
+                <div class="status-item">
+                    <span class="status-dot" id="github-status"></span>
+                    <span>GitHub</span>
+                </div>
+                <div class="status-item" id="last-updated"></div>
+                <div class="status-item status-quote" id="random-quote"></div>
+            </footer>
+        </div>
+    </main>
 
     <!-- Settings Modal -->
     <div class="modal-overlay" id="modal">
@@ -1426,7 +1249,7 @@
             <div class="modal-header">
                 <h2 class="modal-title">Settings</h2>
                 <button class="modal-close" id="modal-close">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <line x1="18" y1="6" x2="6" y2="18"></line>
                         <line x1="6" y1="6" x2="18" y2="18"></line>
                     </svg>
@@ -1438,47 +1261,36 @@
                         <label class="form-label">GitHub Personal Access Token</label>
                         <input type="password" class="form-input" id="github-token" placeholder="ghp_xxxxxxxxxxxx">
                         <p class="form-hint">
-                            Create a token at <a href="https://github.com/settings/tokens" >GitHub Settings → Tokens</a><br>
-                            Required scopes: <code>repo</code>, <code>read:user</code>
+                            Create at <a href="https://github.com/settings/tokens" target="_blank">GitHub Settings → Tokens</a><br>
+                            Scopes: <code>repo</code>, <code>read:user</code>
                         </p>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Repo Search Locations</label>
                         <input type="text" class="form-input" id="repo-search-locations" placeholder="user:username, org:orgname">
                         <p class="form-hint">
-                            Comma-separated list of GitHub users/orgs to search.<br>
-                            Format: <code>user:username</code> or <code>org:orgname</code>
+                            Comma-separated. Format: <code>user:name</code> or <code>org:name</code>
                         </p>
                     </div>
                     <div class="form-group">
                         <label class="form-label">OAuth Worker URL</label>
-                        <input type="text" class="form-input" id="worker-url" placeholder="https://sysopbeta-oauth.xxx.workers.dev">
-                        <p class="form-hint">
-                            Your Cloudflare Worker URL (see <code>cloudflare-worker/SETUP.md</code>)
-                        </p>
+                        <input type="text" class="form-input" id="worker-url" placeholder="https://your-worker.workers.dev">
+                        <p class="form-hint">Your Cloudflare Worker URL</p>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Google Calendar</label>
-                        <button type="button" class="btn btn-primary" id="google-auth-btn" style="width: 100%;">
+                        <button type="button" class="btn btn-primary btn-block" id="google-auth-btn">
                             Connect Google Calendar
                         </button>
-                        <p class="form-hint" id="google-auth-status">
-                            Not connected
-                        </p>
+                        <p class="form-hint" id="google-auth-status">Not connected</p>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Profile Picture URL</label>
                         <input type="text" class="form-input" id="profile-image-url" placeholder="https://github.com/username.png">
-                        <p class="form-hint">
-                            GitHub avatar: <code>https://github.com/USERNAME.png</code>
-                        </p>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Profile Link URL</label>
-                        <input type="text" class="form-input" id="profile-link-url" placeholder="https://github.com/username?tab=repositories">
-                        <p class="form-hint">
-                            Where to navigate when clicking the profile picture
-                        </p>
+                        <input type="text" class="form-input" id="profile-link-url" placeholder="https://github.com/username">
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Save & Reload</button>
                 </form>
@@ -1487,7 +1299,7 @@
     </div>
 
     <script>
-        // Configuration (stored in localStorage)
+        // ========== Configuration ==========
         const CONFIG_KEY = 'terminal-home-config';
 
         function getConfig() {
@@ -1502,7 +1314,7 @@
             localStorage.setItem(CONFIG_KEY, JSON.stringify(config));
         }
 
-        // Theme toggle
+        // ========== Theme Toggle ==========
         function initTheme() {
             const config = getConfig();
             const theme = config.theme || 'dark';
@@ -1518,34 +1330,32 @@
             document.documentElement.setAttribute('data-theme', newTheme);
         }
 
-        // Initialize theme immediately
         initTheme();
-
         document.getElementById('theme-btn').addEventListener('click', toggleTheme);
 
-        // Console DateTime
+        // ========== Clock ==========
         function updateClock() {
             const now = new Date();
-            const el = document.getElementById('console-datetime');
+            const timeEl = document.getElementById('hero-time');
+            const dateEl = document.getElementById('hero-date');
 
-            const time = now.toLocaleTimeString('en-GB', {
+            timeEl.textContent = now.toLocaleTimeString('en-GB', {
                 hour: '2-digit',
                 minute: '2-digit'
             });
 
-            const date = now.toLocaleDateString('en-GB', {
-                weekday: 'short',
+            dateEl.textContent = now.toLocaleDateString('en-GB', {
+                weekday: 'long',
                 day: 'numeric',
-                month: 'short'
+                month: 'long',
+                year: 'numeric'
             });
-
-            el.textContent = `${time} · ${date}`;
         }
 
         updateClock();
         setInterval(updateClock, 1000);
 
-        // Fun Reddit Posts - SFW subreddits only
+        // ========== Reddit Posts ==========
         const sfwSubreddits = [
             { name: 'ProgrammerHumor', icon: '💻' },
             { name: 'aww', icon: '🐱' },
@@ -1574,55 +1384,37 @@
                 const response = await fetch(`https://www.reddit.com/r/${randomSub.name}/hot.json?limit=50`);
                 const data = await response.json();
 
-                // Filter for SFW posts with images
                 const posts = data.data.children
                     .map(child => child.data)
-                    .filter(post => {
-                        // Skip NSFW posts
-                        if (post.over_18) return false;
-                        // Skip stickied/pinned posts
-                        if (post.stickied) return false;
-                        // Skip videos and self posts without preview
-                        if (post.is_video) return false;
-                        return true;
-                    })
-                    .map(post => ({
-                        title: post.title,
-                        subreddit: post.subreddit_name_prefixed,
-                        subredditIcon: randomSub.icon,
-                        url: `https://reddit.com${post.permalink}`,
-                        image: getPostImage(post),
-                        score: post.score,
-                        comments: post.num_comments,
-                        author: post.author
-                    }));
+                    .filter(post => !post.over_18 && !post.stickied && !post.is_video)
+                    .map(post => {
+                        // Get the best available image
+                        let imageUrl = null;
+                        if (post.preview?.images?.[0]?.resolutions) {
+                            // Get a medium resolution preview
+                            const resolutions = post.preview.images[0].resolutions;
+                            const medium = resolutions.find(r => r.width >= 200 && r.width <= 400) || resolutions[resolutions.length - 1];
+                            if (medium) {
+                                imageUrl = medium.url.replace(/&amp;/g, '&');
+                            }
+                        } else if (post.thumbnail && post.thumbnail.startsWith('http')) {
+                            imageUrl = post.thumbnail;
+                        }
+
+                        return {
+                            title: post.title,
+                            subreddit: post.subreddit_name_prefixed,
+                            url: `https://reddit.com${post.permalink}`,
+                            score: post.score,
+                            image: imageUrl
+                        };
+                    });
 
                 return posts;
             } catch (err) {
                 console.error('Reddit fetch error:', err);
                 return [];
             }
-        }
-
-        function getPostImage(post) {
-            // Try to get image from various Reddit image sources
-            if (post.url && (post.url.includes('i.redd.it') || post.url.includes('i.imgur.com'))) {
-                return post.url;
-            }
-            if (post.preview && post.preview.images && post.preview.images[0]) {
-                // Get a reasonably sized preview
-                const images = post.preview.images[0];
-                if (images.resolutions && images.resolutions.length > 0) {
-                    // Get medium resolution
-                    const midRes = images.resolutions[Math.min(2, images.resolutions.length - 1)];
-                    return midRes.url.replace(/&amp;/g, '&');
-                }
-                return images.source.url.replace(/&amp;/g, '&');
-            }
-            if (post.thumbnail && post.thumbnail.startsWith('http')) {
-                return post.thumbnail;
-            }
-            return null;
         }
 
         function formatNumber(num) {
@@ -1633,82 +1425,57 @@
 
         function renderRedditPost(post) {
             const container = document.getElementById('fun-post-body');
-
-            const imageHtml = post.image
-                ? `<img src="${post.image}" alt="Post image" class="fun-post-image" onerror="this.parentElement.innerHTML='<div class=\\'fun-post-no-image\\'>${post.subredditIcon}</div>'">`
-                : `<div class="fun-post-no-image">${post.subredditIcon}</div>`;
+            const imageContainer = document.getElementById('fun-post-image');
 
             container.innerHTML = `
-                <div class="fun-post-content">
-                    ${imageHtml}
-                    <div class="fun-post-text">
-                        <h3>${escapeHtml(post.title)}</h3>
-                        <div class="fun-post-meta">
-                            <span class="subreddit">${post.subreddit}</span> · u/${escapeHtml(post.author)}
-                        </div>
-                        <div class="fun-post-stats">
-                            <span>⬆ ${formatNumber(post.score)}</span>
-                            <span>💬 ${formatNumber(post.comments)}</span>
-                        </div>
-                        <a href="${post.url}" class="fun-post-link" target="_blank" rel="noopener">
-                            View on Reddit
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                <polyline points="15 3 21 3 21 9"></polyline>
-                                <line x1="10" y1="14" x2="21" y2="3"></line>
-                            </svg>
-                        </a>
-                    </div>
-                </div>
+                <div class="fun-widget-meta">${post.subreddit} · ⬆ ${formatNumber(post.score)}</div>
+                <div class="fun-widget-title"><a href="${post.url}" target="_blank" rel="noopener">${escapeHtml(post.title)}</a></div>
             `;
+
+            if (post.image) {
+                imageContainer.innerHTML = `<img src="${post.image}" alt="" onerror="this.parentElement.innerHTML='<span class=\\'placeholder\\'>🎲</span>'">`;
+            } else {
+                imageContainer.innerHTML = '<span class="placeholder">🎲</span>';
+            }
         }
 
         async function showRandomRedditPost() {
             const container = document.getElementById('fun-post-body');
+            const imageContainer = document.getElementById('fun-post-image');
 
-            // If we have cached posts and haven't shown them all, show next one
             if (cachedRedditPosts.length > 0 && currentPostIndex < cachedRedditPosts.length) {
                 renderRedditPost(cachedRedditPosts[currentPostIndex]);
                 currentPostIndex++;
                 return;
             }
 
-            // Fetch new posts
             container.innerHTML = `
-                <div class="loading">
-                    <div class="loading-dots">
-                        <span></span><span></span><span></span>
-                    </div>
-                </div>
+                <div class="fun-widget-meta">Loading...</div>
+                <div class="fun-widget-title"><a href="#">Fetching posts...</a></div>
             `;
+            imageContainer.innerHTML = '<span class="placeholder">⏳</span>';
 
             const posts = await fetchRedditPosts();
 
             if (posts.length === 0) {
                 container.innerHTML = `
-                    <div class="empty-state">
-                        <div class="empty-icon">📡</div>
-                        <div class="empty-text">Could not load Reddit posts</div>
-                    </div>
+                    <div class="fun-widget-meta">Reddit</div>
+                    <div class="fun-widget-title"><a href="https://reddit.com">Could not load posts</a></div>
                 `;
+                imageContainer.innerHTML = '<span class="placeholder">😢</span>';
                 return;
             }
 
-            // Shuffle posts for variety
             cachedRedditPosts = posts.sort(() => Math.random() - 0.5);
             currentPostIndex = 0;
-
             renderRedditPost(cachedRedditPosts[currentPostIndex]);
             currentPostIndex++;
         }
 
-        // Initialize Reddit post
         showRandomRedditPost();
 
-        // Refresh button
         document.getElementById('fun-post-refresh').addEventListener('click', function() {
             this.classList.add('spinning');
-            // If we've shown all cached posts, fetch new ones from a different subreddit
             if (currentPostIndex >= cachedRedditPosts.length) {
                 cachedRedditPosts = [];
                 currentPostIndex = 0;
@@ -1718,17 +1485,17 @@
             });
         });
 
-        // Quick Links with drag & drop
+        // ========== Quick Links ==========
         const DEFAULT_LINKS = [
-            { id: 'github', name: 'IT Ops', url: 'https://github.com/orgs/inbo/projects/23', icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>' },
-            { id: 'calendar', name: 'Calendar', url: 'https://calendar.google.com', icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>' },
-            { id: 'gmail', name: 'Gmail', url: 'https://mail.google.com', icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>' },
-            { id: 'devops', name: 'DevOps', url: 'https://github.com/orgs/inbo/projects/18', icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>' },
-            { id: 'reddit', name: 'Reddit', url: 'https://reddit.com', icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>' },
-            { id: 'aws', name: 'AWS', url: 'https://eu-west-1.console.aws.amazon.com/ec2/home?region=eu-west-1#Home', icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.4c5.302 0 9.6 4.298 9.6 9.6s-4.298 9.6-9.6 9.6S2.4 17.302 2.4 12 6.698 2.4 12 2.4zm-1.2 4.8v9.6l7.2-4.8-7.2-4.8z"/></svg>' },
-            { id: 'isms', name: 'ISMS', url: 'https://github.com/inbo/ISMS', icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>' },
-            { id: 'gemini', name: 'Gemini', url: 'https://gemini.google.com', icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>' },
-            { id: 'chess', name: 'Chess', url: 'https://www.chess.com/home', icon: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1.1 0 2 .9 2 2 0 .74-.4 1.38-1 1.72V7h1c1.1 0 2 .9 2 2v1h1c1.1 0 2 .9 2 2v7c0 1.1-.9 2-2 2H7c-1.1 0-2-.9-2-2v-7c0-1.1.9-2 2-2h1v-1c0-1.1.9-2 2-2h1V5.72c-.6-.34-1-.98-1-1.72 0-1.1.9-2 2-2z"/></svg>' }
+            { id: 'github', name: 'IT Ops', url: 'https://github.com/orgs/inbo/projects/23', icon: '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>' },
+            { id: 'calendar', name: 'Calendar', url: 'https://calendar.google.com', icon: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>' },
+            { id: 'gmail', name: 'Gmail', url: 'https://mail.google.com', icon: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>' },
+            { id: 'devops', name: 'DevOps', url: 'https://github.com/orgs/inbo/projects/18', icon: '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>' },
+            { id: 'reddit', name: 'Reddit', url: 'https://reddit.com', icon: '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701z"/></svg>' },
+            { id: 'aws', name: 'AWS', url: 'https://eu-west-1.console.aws.amazon.com/ec2/home?region=eu-west-1#Home', icon: '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.4c5.302 0 9.6 4.298 9.6 9.6s-4.298 9.6-9.6 9.6S2.4 17.302 2.4 12 6.698 2.4 12 2.4zm-1.2 4.8v9.6l7.2-4.8-7.2-4.8z"/></svg>' },
+            { id: 'isms', name: 'ISMS', url: 'https://github.com/inbo/ISMS', icon: '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>' },
+            { id: 'gemini', name: 'Gemini', url: 'https://gemini.google.com', icon: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>' },
+            { id: 'chess', name: 'Chess', url: 'https://www.chess.com/home', icon: '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1.1 0 2 .9 2 2 0 .74-.4 1.38-1 1.72V7h1c1.1 0 2 .9 2 2v1h1c1.1 0 2 .9 2 2v7c0 1.1-.9 2-2 2H7c-1.1 0-2-.9-2-2v-7c0-1.1.9-2 2-2h1v-1c0-1.1.9-2 2-2h1V5.72c-.6-.34-1-.98-1-1.72 0-1.1.9-2 2-2z"/></svg>' }
         ];
 
         const LINKS_ORDER_KEY = 'quick-links-order';
@@ -1749,24 +1516,21 @@
             const container = document.getElementById('quick-links');
             const order = getLinksOrder();
 
-            // Sort links by saved order
             const sortedLinks = order
                 .map(id => DEFAULT_LINKS.find(l => l.id === id))
                 .filter(Boolean);
 
-            // Add any new links that aren't in the saved order
             DEFAULT_LINKS.forEach(link => {
                 if (!order.includes(link.id)) sortedLinks.push(link);
             });
 
             container.innerHTML = sortedLinks.map(link => `
-                <a href="${link.url}" class="quick-link" draggable="true" data-id="${link.id}">
+                <a href="${link.url}" class="quick-link" draggable="true" data-id="${link.id}" target="_blank">
                     ${link.icon}
                     <span>${link.name}</span>
                 </a>
             `).join('');
 
-            // Add drag & drop listeners
             initDragAndDrop();
         }
 
@@ -1789,14 +1553,12 @@
         function handleDragStart(e) {
             draggedElement = this;
             this.classList.add('dragging');
-            document.getElementById('quick-links').classList.add('drag-active');
             e.dataTransfer.effectAllowed = 'move';
             e.dataTransfer.setData('text/plain', this.dataset.id);
         }
 
-        function handleDragEnd(e) {
+        function handleDragEnd() {
             this.classList.remove('dragging');
-            document.getElementById('quick-links').classList.remove('drag-active');
             document.querySelectorAll('.quick-link').forEach(el => el.classList.remove('drag-over'));
             draggedElement = null;
         }
@@ -1813,7 +1575,7 @@
             }
         }
 
-        function handleDragLeave(e) {
+        function handleDragLeave() {
             this.classList.remove('drag-over');
         }
 
@@ -1833,16 +1595,14 @@
                     this.parentNode.insertBefore(draggedElement, this);
                 }
 
-                // Save new order
                 const newOrder = [...container.querySelectorAll('.quick-link')].map(el => el.dataset.id);
                 saveLinksOrder(newOrder);
             }
         }
 
-        // Initialize quick links
         renderQuickLinks();
 
-        // GitHub API
+        // ========== GitHub API ==========
         let issuesData = { assigned: [], created: [] };
         let currentIssuesView = 'assigned';
 
@@ -1863,35 +1623,24 @@
             };
 
             try {
-                // First get the user
                 const userRes = await fetch('https://api.github.com/user', { headers });
-                if (!userRes.ok) {
-                    throw new Error(`GitHub auth failed: ${userRes.status}`);
-                }
+                if (!userRes.ok) throw new Error(`GitHub auth failed: ${userRes.status}`);
                 const user = await userRes.json();
-                console.log('GitHub user:', user.login);
 
-                // Fetch assigned issues
                 const issuesRes = await fetch('https://api.github.com/issues?filter=assigned&state=open&per_page=10', { headers });
                 const assignedIssues = issuesRes.ok ? await issuesRes.json() : [];
 
-                // Fetch issues created by user and assigned to others
                 const createdRes = await fetch(`https://api.github.com/search/issues?q=is:issue+is:open+author:${user.login}+-assignee:${user.login}&per_page=15&sort=updated`, { headers });
                 const createdData = await createdRes.json();
-                // Filter to only include issues that have an assignee (assigned to someone else)
                 const createdIssues = (createdData.items || []).filter(issue => issue.assignees && issue.assignees.length > 0);
 
-                // Store for toggle
                 issuesData.assigned = assignedIssues;
                 issuesData.created = createdIssues;
 
-                // Fetch created PRs - also include review requested
                 const prsRes = await fetch(`https://api.github.com/search/issues?q=is:pr+is:open+author:${user.login}&per_page=10&sort=updated`, { headers });
                 const prsData = await prsRes.json();
-                console.log('PRs response:', prsData);
                 const prs = prsData.items || [];
 
-                // Also fetch PRs where review is requested
                 const reviewRes = await fetch(`https://api.github.com/search/issues?q=is:pr+is:open+review-requested:${user.login}&per_page=5`, { headers });
                 const reviewData = await reviewRes.json();
                 const reviewPrs = reviewData.items || [];
@@ -1911,7 +1660,6 @@
             }
         }
 
-        // Issues toggle handler
         document.getElementById('issues-toggle').addEventListener('click', function(e) {
             const btn = e.target.closest('.card-toggle-btn');
             if (!btn) return;
@@ -1920,23 +1668,18 @@
             if (view === currentIssuesView) return;
 
             currentIssuesView = view;
-
-            // Update active state
             this.querySelectorAll('.card-toggle-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-
-            // Re-render issues
             renderIssues(issuesData[view], view);
         });
 
-        // Repo Search
+        // ========== Repo Search ==========
         let searchTimeout = null;
         const repoSearchInput = document.getElementById('repo-search-input');
         const repoSearchResults = document.getElementById('repo-search-results');
 
         repoSearchInput.addEventListener('input', function() {
             const query = this.value.trim();
-
             clearTimeout(searchTimeout);
 
             if (query.length < 2) {
@@ -1960,7 +1703,6 @@
             repoSearchInput.placeholder = `Search repos in ${names}...`;
         }
 
-        // Set placeholder on load
         updateRepoSearchPlaceholder();
 
         async function searchRepos(query) {
@@ -2004,15 +1746,15 @@
 
             repoSearchResults.classList.add('has-results');
             repoSearchResults.innerHTML = repos.map(repo => `
-                <a href="${repo.html_url}" class="github-item" target="_blank">
-                    <svg class="item-icon" style="color: var(--accent-blue)" viewBox="0 0 16 16" fill="currentColor">
+                <a href="${repo.html_url}" class="list-item" target="_blank">
+                    <svg class="list-item-icon repo" viewBox="0 0 16 16" fill="currentColor">
                         <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"></path>
                     </svg>
-                    <div class="item-content">
-                        <div class="item-title"><span class="repo-owner">${escapeHtml(repo.owner.login)}/</span>${escapeHtml(repo.name)}</div>
-                        <div class="item-meta">
-                            ${repo.description ? `<span>${escapeHtml(repo.description.substring(0, 60))}${repo.description.length > 60 ? '...' : ''}</span>` : ''}
-                            ${repo.stargazers_count > 0 ? `<span class="repo-stars">★ ${repo.stargazers_count}</span>` : ''}
+                    <div class="list-item-content">
+                        <div class="list-item-title"><span style="color: var(--text-muted)">${escapeHtml(repo.owner.login)}/</span>${escapeHtml(repo.name)}</div>
+                        <div class="list-item-meta">
+                            ${repo.description ? `<span>${escapeHtml(repo.description.substring(0, 50))}${repo.description.length > 50 ? '...' : ''}</span>` : ''}
+                            ${repo.stargazers_count > 0 ? `<span class="stars">★ ${repo.stargazers_count}</span>` : ''}
                         </div>
                     </div>
                 </a>
@@ -2029,30 +1771,29 @@
             }
 
             container.innerHTML = issues.map(issue => {
-                // For created view, show assignee instead of repo
                 const repoName = issue.repository?.full_name || issue.repository_url?.split('/').slice(-2).join('/') || '';
                 const assigneeInfo = view === 'created' && issue.assignees?.length
-                    ? `<span class="item-assignee">→ ${issue.assignees.map(a => a.login).join(', ')}</span>`
+                    ? `<span class="assignee">→ ${issue.assignees.map(a => a.login).join(', ')}</span>`
                     : '';
 
                 return `
-                <a href="${issue.html_url}" class="github-item">
-                    <svg class="item-icon issue" viewBox="0 0 16 16" fill="currentColor">
+                <a href="${issue.html_url}" class="list-item" target="_blank">
+                    <svg class="list-item-icon issue" viewBox="0 0 16 16" fill="currentColor">
                         <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"></path>
                         <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"></path>
                     </svg>
-                    <div class="item-content">
-                        <div class="item-title">${escapeHtml(issue.title)}</div>
-                        <div class="item-meta">
-                            <span class="item-repo">${repoName}</span>
+                    <div class="list-item-content">
+                        <div class="list-item-title">${escapeHtml(issue.title)}</div>
+                        <div class="list-item-meta">
+                            <span class="repo">${repoName}</span>
                             ${assigneeInfo}
                             <span>#${issue.number}</span>
                             <span>${timeAgo(issue.updated_at)}</span>
                         </div>
                         ${issue.labels?.length ? `
-                            <div class="item-labels">
+                            <div class="list-item-labels">
                                 ${issue.labels.slice(0, 3).map(label => `
-                                    <span class="label" style="background: #${label.color}20; color: #${label.color}; border: 1px solid #${label.color}40;">
+                                    <span class="label" style="background: #${label.color}20; color: #${label.color};">
                                         ${escapeHtml(label.name)}
                                     </span>
                                 `).join('')}
@@ -2066,7 +1807,6 @@
         function renderPRs(prs, reviewPrs = []) {
             const container = document.getElementById('prs-container');
 
-            // Combine and dedupe
             const allPrs = [...prs];
             const prIds = new Set(prs.map(p => p.id));
             reviewPrs.forEach(pr => {
@@ -2082,41 +1822,34 @@
             }
 
             container.innerHTML = allPrs.map(pr => `
-                <a href="${pr.html_url}"  class="github-item">
-                    <svg class="item-icon pr" viewBox="0 0 16 16" fill="currentColor">
+                <a href="${pr.html_url}" class="list-item" target="_blank">
+                    <svg class="list-item-icon pr" viewBox="0 0 16 16" fill="currentColor">
                         <path d="M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Z"></path>
                     </svg>
-                    <div class="item-content">
-                        <div class="item-title">${escapeHtml(pr.title)}</div>
-                        <div class="item-meta">
-                            <span class="item-repo">${pr.repository_url?.split('/').slice(-2).join('/') || ''}</span>
+                    <div class="list-item-content">
+                        <div class="list-item-title">${escapeHtml(pr.title)}</div>
+                        <div class="list-item-meta">
+                            <span class="repo">${pr.repository_url?.split('/').slice(-2).join('/') || ''}</span>
                             <span>#${pr.number}</span>
                             <span>${timeAgo(pr.updated_at)}</span>
-                            ${pr._isReview ? '<span style="color: var(--accent-orange);">review</span>' : ''}
+                            ${pr._isReview ? '<span class="review">review</span>' : ''}
                         </div>
                     </div>
                 </a>
             `).join('');
         }
 
-        // Google Calendar API (via Cloudflare Worker)
-
-        // Fetch fresh token from Worker (auto-refresh!)
+        // ========== Google Calendar API ==========
         async function getAccessToken() {
             const config = getConfig();
-
-            if (!config.workerUrl) {
-                return null;
-            }
+            if (!config.workerUrl) return null;
 
             try {
                 const res = await fetch(`${config.workerUrl}/token`);
                 const data = await res.json();
 
                 if (data.error) {
-                    console.log('Token error:', data.error);
                     if (data.error === 'not_authenticated') {
-                        // Clear local token data
                         delete config.googleAccessToken;
                         delete config.googleTokenExpiry;
                         saveConfig(config);
@@ -2124,47 +1857,33 @@
                     return null;
                 }
 
-                // Update local cache
                 config.googleAccessToken = data.access_token;
                 config.googleTokenExpiry = Date.now() + (data.expires_in * 1000);
                 saveConfig(config);
-
                 return data.access_token;
             } catch (err) {
-                console.error('Failed to get token from Worker:', err);
+                console.error('Failed to get token:', err);
                 return null;
             }
         }
 
-        // Quick reconnect function (can be called from anywhere)
         function triggerGoogleReconnect() {
             const config = getConfig();
-            const workerUrl = config.workerUrl;
-
-            if (!workerUrl) {
+            if (!config.workerUrl) {
                 alert('Please set your OAuth Worker URL in settings first');
                 document.getElementById('settings-btn').click();
                 return;
             }
 
-            // Open Worker auth endpoint in popup
-            const width = 500;
-            const height = 600;
+            const width = 500, height = 600;
             const left = (window.innerWidth - width) / 2;
             const top = (window.innerHeight - height) / 2;
-
-            window.open(
-                `${workerUrl}/auth`,
-                'google-oauth',
-                `width=${width},height=${height},left=${left},top=${top}`
-            );
+            window.open(`${config.workerUrl}/auth`, 'google-oauth', `width=${width},height=${height},left=${left},top=${top}`);
         }
 
-        // Update calendar status indicator
         function updateCalendarStatus() {
             const config = getConfig();
             const statusEl = document.getElementById('calendar-status');
-            const hasWorker = !!config.workerUrl;
 
             if (!config.googleAccessToken) {
                 statusEl.innerHTML = `
@@ -2178,80 +1897,48 @@
                 return;
             }
 
-            // If using Worker, show auto-refresh indicator
-            if (hasWorker) {
-                statusEl.innerHTML = `<span style="font-size: 12px; color: var(--accent-green); font-weight: 500;" title="Auto-refresh via Worker">✓ Auto</span>`;
+            if (config.workerUrl) {
+                statusEl.innerHTML = `<span style="font-size: 11px; color: var(--success); font-weight: 500;">✓ Auto</span>`;
                 return;
             }
 
-            // Fallback: show countdown for non-Worker users
-            const now = Date.now();
-            const expiry = config.googleTokenExpiry || 0;
-            const timeLeft = expiry - now;
-
-            // Token expired
+            const timeLeft = (config.googleTokenExpiry || 0) - Date.now();
             if (timeLeft <= 0) {
                 statusEl.innerHTML = `
                     <span class="calendar-expiry-warning">Expired</span>
-                    <button class="calendar-reconnect" onclick="triggerGoogleReconnect()">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 12a9 9 0 11-9-9c2.52 0 4.93 1 6.74 2.74L21 8V3"></path>
-                        </svg>
-                        Reconnect
-                    </button>
+                    <button class="calendar-reconnect" onclick="triggerGoogleReconnect()">Reconnect</button>
                 `;
-                return;
-            }
-
-            // Token expiring within 10 minutes - show warning
-            if (timeLeft < 600000) {
-                const minsLeft = Math.ceil(timeLeft / 60000);
+            } else if (timeLeft < 600000) {
                 statusEl.innerHTML = `
-                    <span class="calendar-expiry-warning">${minsLeft}m left</span>
-                    <button class="calendar-reconnect" onclick="triggerGoogleReconnect()">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 12a9 9 0 11-9-9c2.52 0 4.93 1 6.74 2.74L21 8V3"></path>
-                        </svg>
-                        Refresh
-                    </button>
+                    <span class="calendar-expiry-warning">${Math.ceil(timeLeft / 60000)}m</span>
+                    <button class="calendar-reconnect" onclick="triggerGoogleReconnect()">Refresh</button>
                 `;
-                return;
+            } else {
+                statusEl.innerHTML = `<span style="font-size: 10px; color: var(--text-muted);">${Math.floor(timeLeft / 60000)}m</span>`;
             }
-
-            // Token valid - show time remaining
-            const minsLeft = Math.floor(timeLeft / 60000);
-            statusEl.innerHTML = `<span style="font-size: 0.7rem; color: var(--text-muted);">${minsLeft}m</span>`;
         }
 
         async function fetchNextMeeting() {
             const config = getConfig();
-
             updateCalendarStatus();
 
-            // If we have a Worker URL, try to get a fresh token from it
             if (config.workerUrl) {
                 const token = await getAccessToken();
                 if (token) {
                     fetchCalendarData();
-                    return;
                 } else {
-                    showEmptyState('calendar-container', '🔑', 'Click "Connect" above to link Google Calendar');
-                    return;
+                    showEmptyState('calendar-container', '🔑', 'Click Connect to link Calendar');
                 }
-            }
-
-            // Fallback: use locally stored token (for users without Worker)
-            const accessToken = config.googleAccessToken;
-
-            if (!accessToken) {
-                showEmptyState('calendar-container', '🔑', 'Set Worker URL in settings to connect');
                 return;
             }
 
-            // Check if token expired
+            if (!config.googleAccessToken) {
+                showEmptyState('calendar-container', '🔑', 'Set Worker URL in settings');
+                return;
+            }
+
             if (config.googleTokenExpiry && Date.now() > config.googleTokenExpiry) {
-                console.log('Token expired, showing reconnect prompt...');
-                showEmptyState('calendar-container', '🔄', 'Session expired - click Reconnect above');
+                showEmptyState('calendar-container', '🔄', 'Session expired');
                 return;
             }
 
@@ -2260,48 +1947,35 @@
 
         async function fetchCalendarData() {
             const config = getConfig();
-            const accessToken = config.googleAccessToken;
 
             try {
                 const now = new Date().toISOString();
-                const url = `https://www.googleapis.com/calendar/v3/calendars/primary/events?` +
-                    `timeMin=${now}&maxResults=20&singleEvents=true&orderBy=startTime`;
+                const url = `https://www.googleapis.com/calendar/v3/calendars/primary/events?timeMin=${now}&maxResults=20&singleEvents=true&orderBy=startTime`;
 
                 const res = await fetch(url, {
-                    headers: {
-                        'Authorization': `Bearer ${accessToken}`
-                    }
+                    headers: { 'Authorization': `Bearer ${config.googleAccessToken}` }
                 });
 
                 if (res.status === 401) {
-                    // Token invalid/expired - update status and show reconnect
-                    console.log('Token invalid (401), showing reconnect...');
-                    const config = getConfig();
-                    config.googleTokenExpiry = 0; // Mark as expired
+                    config.googleTokenExpiry = 0;
                     saveConfig(config);
                     updateCalendarStatus();
-                    showEmptyState('calendar-container', '🔄', 'Session expired - click Reconnect above');
+                    showEmptyState('calendar-container', '🔄', 'Session expired');
                     return;
                 }
 
-                if (!res.ok) {
-                    throw new Error(`Calendar API error: ${res.status}`);
-                }
+                if (!res.ok) throw new Error(`Calendar API error: ${res.status}`);
 
                 const data = await res.json();
                 let events = data.items || [];
 
-                // Filter out work location events
                 const locationKeywords = ['home', 'thuis', 'office', 'kantoor', 'bureau', 'ht bxl', 'vac gent'];
                 events = events.filter(event => {
                     const title = (event.summary || '').toLowerCase();
                     return !locationKeywords.some(keyword => title.includes(keyword));
-                });
+                }).slice(0, 3);
 
-                // Take first 3 events
-                events = events.slice(0, 3);
-
-                if (events.length === 0) {
+                if (!events.length) {
                     showEmptyState('calendar-container', '📅', 'No upcoming meetings');
                     return;
                 }
@@ -2309,7 +1983,7 @@
                 renderMeetings(events);
             } catch (err) {
                 console.error('Calendar fetch error:', err);
-                showEmptyState('calendar-container', '⚠️', err.message || 'Failed to fetch calendar');
+                showEmptyState('calendar-container', '⚠️', err.message || 'Failed to fetch');
             }
         }
 
@@ -2320,29 +1994,24 @@
             container.innerHTML = events.map(event => {
                 const startDate = event.start.dateTime ? new Date(event.start.dateTime) : new Date(event.start.date);
                 const isAllDay = !event.start.dateTime;
-
                 const isToday = startDate.toDateString() === now.toDateString();
                 const isTomorrow = startDate.toDateString() === new Date(now.getTime() + 86400000).toDateString();
 
-                let dayLabel;
-                if (isToday) dayLabel = 'Today';
-                else if (isTomorrow) dayLabel = 'Tomorrow';
-                else dayLabel = startDate.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
-
+                let dayLabel = isToday ? 'Today' : isTomorrow ? 'Tomorrow' : startDate.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
                 const timeStr = isAllDay ? 'All day' : startDate.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
                 const countdown = getEventCountdown(startDate, isAllDay);
 
                 return `
-                    <a href="${event.htmlLink || 'https://calendar.google.com'}"  class="github-item" style="text-decoration: none;">
-                        <svg class="item-icon" style="color: var(--accent-blue);" viewBox="0 0 16 16" fill="currentColor">
+                    <a href="${event.htmlLink || 'https://calendar.google.com'}" class="list-item" target="_blank">
+                        <svg class="list-item-icon calendar" viewBox="0 0 16 16" fill="currentColor">
                             <path d="M4.5 1.75v1.5H2.5a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1h-2v-1.5a.75.75 0 0 0-1.5 0v1.5h-4v-1.5a.75.75 0 0 0-1.5 0ZM2.5 6h11v7.25H2.5V6Z"/>
                         </svg>
-                        <div class="item-content">
-                            <div class="item-title">${escapeHtml(event.summary || 'No title')}</div>
-                            <div class="item-meta">
-                                <span style="color: var(--text-secondary);">${timeStr}</span>
+                        <div class="list-item-content">
+                            <div class="list-item-title">${escapeHtml(event.summary || 'No title')}</div>
+                            <div class="list-item-meta">
+                                <span>${timeStr}</span>
                                 <span>${dayLabel}</span>
-                                <span style="color: var(--accent-orange);">${countdown}</span>
+                                <span class="countdown">${countdown}</span>
                             </div>
                         </div>
                     </a>
@@ -2355,7 +2024,6 @@
             let diff = date - now;
 
             if (isAllDay) {
-                // For all-day events, compare dates only
                 const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
                 const eventDay = new Date(date.getFullYear(), date.getMonth(), date.getDate());
                 diff = eventDay - today;
@@ -2370,17 +2038,15 @@
                 const days = Math.floor(diff / (1000 * 60 * 60 * 24));
                 if (days === 0) return 'Today';
                 if (days === 1) return 'Tomorrow';
-                return `in ${days} days`;
+                return `in ${days}d`;
             }
 
             if (hours < 1) return `in ${minutes}m`;
             if (hours < 24) return `in ${hours}h ${minutes}m`;
-
-            const days = Math.floor(hours / 24);
-            return `in ${days}d`;
+            return `in ${Math.floor(hours / 24)}d`;
         }
 
-        // Utility functions
+        // ========== Utilities ==========
         function showEmptyState(containerId, icon, text) {
             document.getElementById(containerId).innerHTML = `
                 <div class="empty-state">
@@ -2397,10 +2063,7 @@
         }
 
         function timeAgo(dateString) {
-            const date = new Date(dateString);
-            const now = new Date();
-            const seconds = Math.floor((now - date) / 1000);
-
+            const seconds = Math.floor((new Date() - new Date(dateString)) / 1000);
             const intervals = [
                 { label: 'y', seconds: 31536000 },
                 { label: 'mo', seconds: 2592000 },
@@ -2408,16 +2071,14 @@
                 { label: 'h', seconds: 3600 },
                 { label: 'm', seconds: 60 }
             ];
-
             for (const interval of intervals) {
                 const count = Math.floor(seconds / interval.seconds);
                 if (count >= 1) return `${count}${interval.label} ago`;
             }
-
             return 'just now';
         }
 
-        // Modal
+        // ========== Modal ==========
         const modal = document.getElementById('modal');
         const settingsBtn = document.getElementById('settings-btn');
         const modalClose = document.getElementById('modal-close');
@@ -2435,9 +2096,7 @@
         });
 
         modalClose.addEventListener('click', () => modal.classList.remove('active'));
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) modal.classList.remove('active');
-        });
+        modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
 
         settingsForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -2447,16 +2106,12 @@
             config.workerUrl = document.getElementById('worker-url').value;
             config.profileImageUrl = document.getElementById('profile-image-url').value;
             config.profileLinkUrl = document.getElementById('profile-link-url').value || 'https://github.com/berthuygens?tab=repositories';
-            console.log('Saving config:', config);
             saveConfig(config);
-            console.log('Config saved, verifying:', getConfig());
             modal.classList.remove('active');
             updateRepoSearchPlaceholder();
             init();
         });
 
-        // Google OAuth
-        // Check Worker authentication status
         async function updateGoogleAuthStatus() {
             const config = getConfig();
             const statusEl = document.getElementById('google-auth-status');
@@ -2464,7 +2119,7 @@
 
             if (!config.workerUrl) {
                 statusEl.textContent = 'Set Worker URL first';
-                statusEl.style.color = 'var(--accent-orange)';
+                statusEl.style.color = 'var(--warning)';
                 btnEl.textContent = 'Connect Google Calendar';
                 return;
             }
@@ -2472,37 +2127,27 @@
             try {
                 const res = await fetch(`${config.workerUrl}/status`);
                 const data = await res.json();
-
                 if (data.authenticated) {
-                    statusEl.textContent = 'Connected via Worker (auto-refresh enabled!)';
-                    statusEl.style.color = 'var(--accent-green)';
-                    btnEl.textContent = 'Reconnect Google Calendar';
+                    statusEl.textContent = 'Connected (auto-refresh enabled)';
+                    statusEl.style.color = 'var(--success)';
+                    btnEl.textContent = 'Reconnect';
                 } else {
                     statusEl.textContent = 'Not connected';
                     statusEl.style.color = '';
                     btnEl.textContent = 'Connect Google Calendar';
                 }
-            } catch (err) {
+            } catch {
                 statusEl.textContent = 'Worker not reachable';
-                statusEl.style.color = 'var(--accent-red)';
+                statusEl.style.color = 'var(--error)';
             }
         }
 
-        // Listen for OAuth success message from popup
         window.addEventListener('message', (event) => {
             const config = getConfig();
-
-            // Validate origin matches our worker
             if (!config.workerUrl || !event.origin) return;
+            if (event.origin !== new URL(config.workerUrl).origin) return;
 
-            const workerOrigin = new URL(config.workerUrl).origin;
-            if (event.origin !== workerOrigin) {
-                console.warn('Rejected message from untrusted origin:', event.origin);
-                return;
-            }
-
-            if (event.data && event.data.type === 'oauth-success') {
-                console.log('OAuth success received from Worker!');
+            if (event.data?.type === 'oauth-success') {
                 config.googleAccessToken = event.data.accessToken;
                 config.googleTokenExpiry = Date.now() + (event.data.expiresIn * 1000);
                 saveConfig(config);
@@ -2515,106 +2160,55 @@
         document.getElementById('google-auth-btn').addEventListener('click', () => {
             const config = getConfig();
             const workerUrl = document.getElementById('worker-url').value || config.workerUrl;
-
             if (!workerUrl) {
                 alert('Please enter your OAuth Worker URL first');
                 return;
             }
-
-            // Save worker URL first
             config.workerUrl = workerUrl;
             saveConfig(config);
 
-            // Open Worker auth endpoint in popup
-            const width = 500;
-            const height = 600;
+            const width = 500, height = 600;
             const left = (window.innerWidth - width) / 2;
             const top = (window.innerHeight - height) / 2;
-
-            window.open(
-                `${workerUrl}/auth`,
-                'google-oauth',
-                `width=${width},height=${height},left=${left},top=${top}`
-            );
+            window.open(`${workerUrl}/auth`, 'google-oauth', `width=${width},height=${height},left=${left},top=${top}`);
         });
 
-        // Update last updated
+        // ========== Last Updated & Quotes ==========
         function updateLastUpdated() {
-            const el = document.getElementById('last-updated');
-            el.textContent = `Updated: ${new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}`;
+            document.getElementById('last-updated').textContent = `Updated ${new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}`;
         }
 
-        // Random quotes
         const quotes = [
             "Talk is cheap. Show me the code. — Linus Torvalds",
             "First, solve the problem. Then, write the code. — John Johnson",
             "Make it work, make it right, make it fast. — Kent Beck",
             "Simplicity is the soul of efficiency. — Austin Freeman",
-            "Any fool can write code that a computer can understand. Good programmers write code that humans can understand. — Martin Fowler",
             "Code is like humor. When you have to explain it, it's bad. — Cory House",
             "Clean code always looks like it was written by someone who cares. — Robert C. Martin",
-            "Programming isn't about what you know; it's about what you can figure out. — Chris Pine",
             "The best error message is the one that never shows up. — Thomas Fuchs",
             "It works on my machine. — Every developer ever",
             "There are only two hard things in CS: cache invalidation and naming things. — Phil Karlton",
-            "The most dangerous phrase is: We've always done it this way. — Grace Hopper",
-            "Weeks of coding can save you hours of planning. — Unknown",
-            "A user interface is like a joke. If you have to explain it, it's not that good. — Martin LeBlanc",
-            "The only way to go fast is to go well. — Robert C. Martin",
-            "Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away. — Antoine de Saint-Exupéry",
-            "Java is to JavaScript what car is to carpet. — Chris Heilmann",
-            "Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live. — John Woods",
-            "Documentation is a love letter that you write to your future self. — Damian Conway",
-            "Software is like entropy: it is difficult to grasp, weighs nothing, and obeys the Second Law of Thermodynamics; i.e., it always increases. — Norman Augustine",
-            "Before software can be reusable it first has to be usable. — Ralph Johnson",
-            "The best thing about a boolean is even if you are wrong, you are only off by a bit. — Anonymous",
-            "If debugging is the process of removing bugs, then programming must be the process of putting them in. — Edsger W. Dijkstra",
-            "Measuring programming progress by lines of code is like measuring aircraft building progress by weight. — Bill Gates",
-            "The computer was born to solve problems that did not exist before. — Bill Gates",
-            "Walking on water and developing software from a specification are easy if both are frozen. — Edward V. Berard",
-            "Computers are good at following instructions, but not at reading your mind. — Donald Knuth",
-            "One of my most productive days was throwing away 1000 lines of code. — Ken Thompson",
-            "Deleted code is debugged code. — Jeff Sickel",
-            "If you think good architecture is expensive, try bad architecture. — Brian Foote",
-            "There is no programming language that will prevent programmers from making bad programs. — Larry Flon",
-            "Copy and paste is a design error. — David Parnas",
-            "The function of good software is to make the complex appear simple. — Grady Booch",
-            "Don't comment bad code — rewrite it. — Brian Kernighan",
-            "Experience is the name everyone gives to their mistakes. — Oscar Wilde",
-            "Programming is the art of telling another human being what one wants the computer to do. — Donald Knuth",
-            "Optimism is an occupational hazard of programming: feedback is the treatment. — Kent Beck",
-            "Without requirements or design, programming is the art of adding bugs to an empty text file. — Louis Srygley",
-            "The sooner you start to code, the longer the program will take. — Roy Carlson",
-            "When debugging, novices insert corrective code; experts remove defective code. — Richard Pattis"
+            "Deleted code is debugged code. — Jeff Sickel"
         ];
 
         function showRandomQuote() {
-            const el = document.getElementById('random-quote');
-            const randomIndex = Math.floor(Math.random() * quotes.length);
-            el.textContent = `"${quotes[randomIndex]}"`;
+            document.getElementById('random-quote').textContent = quotes[Math.floor(Math.random() * quotes.length)];
         }
-
-        // Show quote on page load
         showRandomQuote();
 
-        // Initialize
-        // Profile picture
+        // ========== Profile ==========
         function updateProfilePicture() {
             const config = getConfig();
             const profileLink = document.getElementById('profile-link');
             const profilePic = document.getElementById('profile-pic');
             const profilePlaceholder = document.getElementById('profile-placeholder');
 
-            // Update link URL
             profileLink.href = config.profileLinkUrl || 'https://github.com/berthuygens?tab=repositories';
 
-            // Update image
             if (config.profileImageUrl) {
                 profilePic.src = config.profileImageUrl;
                 profilePic.style.display = 'block';
                 profilePlaceholder.style.display = 'none';
-
-                // Handle image load error
                 profilePic.onerror = () => {
                     profilePic.style.display = 'none';
                     profilePlaceholder.style.display = 'flex';
@@ -2625,7 +2219,7 @@
             }
         }
 
-        // CCB News Ticker
+        // ========== CCB News Ticker ==========
         let ccbNewsItems = [];
         let ccbCurrentIndex = 0;
         let ccbTickerInterval = null;
@@ -2656,18 +2250,15 @@
                 }));
 
                 if (ccbNewsItems.length > 0) {
-                    // Start with random item
                     ccbCurrentIndex = Math.floor(Math.random() * ccbNewsItems.length);
                     typewriteCCBNews();
-                    // Rotate every 20 seconds
                     if (ccbTickerInterval) clearInterval(ccbTickerInterval);
                     ccbTickerInterval = setInterval(rotateCCBNews, 20000);
                 } else {
                     ticker.textContent = 'no advisories';
                     ticker.href = 'https://ccb.belgium.be/advisories';
                 }
-            } catch (error) {
-                console.error('Failed to fetch CCB news:', error);
+            } catch {
                 ticker.textContent = 'ccb unavailable';
                 ticker.href = 'https://ccb.belgium.be/advisories';
             }
@@ -2675,17 +2266,12 @@
 
         function typewriteCCBNews() {
             const ticker = document.getElementById('ccb-news-ticker');
-            if (ccbNewsItems.length === 0) return;
-
-            // Clear any pending typewriter
-            if (ccbTypewriterTimeout) {
-                clearTimeout(ccbTypewriterTimeout);
-            }
+            if (!ccbNewsItems.length) return;
+            if (ccbTypewriterTimeout) clearTimeout(ccbTypewriterTimeout);
 
             const item = ccbNewsItems[ccbCurrentIndex];
             ticker.href = item.link;
             ticker.textContent = '';
-
             const text = item.title;
             let charIndex = 0;
 
@@ -2693,11 +2279,9 @@
                 if (charIndex < text.length) {
                     ticker.textContent = text.substring(0, charIndex + 1);
                     charIndex++;
-                    // ~30ms per character for telex effect
                     ccbTypewriterTimeout = setTimeout(typeNextChar, 30);
                 }
             }
-
             typeNextChar();
         }
 
@@ -2706,9 +2290,9 @@
             typewriteCCBNews();
         }
 
+        // ========== Init ==========
         function init() {
             document.getElementById('github-status').className = 'status-dot';
-
             updateProfilePicture();
             fetchGitHubData();
             fetchNextMeeting();
@@ -2717,11 +2301,7 @@
         }
 
         init();
-
-        // Auto-refresh every 5 minutes
         setInterval(init, 5 * 60 * 1000);
-
-        // Update calendar status every minute (for countdown)
         setInterval(updateCalendarStatus, 60 * 1000);
     </script>
 </body>
