@@ -2152,12 +2152,24 @@
             }
         }
 
+        // SECURITY: Hardcoded trusted worker origins - never trust localStorage for origin validation
+        const TRUSTED_WORKER_ORIGINS = [
+            'https://sysopbeta-oauth.workers.dev',
+            'http://localhost:8787', // Wrangler dev server
+        ];
+
         window.addEventListener('message', (event) => {
-            const config = getConfig();
-            if (!config.workerUrl || !event.origin) return;
-            if (event.origin !== new URL(config.workerUrl).origin) return;
+            if (!event.origin) return;
+
+            // Validate against hardcoded trusted origins, not user-controlled localStorage
+            const isTrustedOrigin = TRUSTED_WORKER_ORIGINS.includes(event.origin);
+            if (!isTrustedOrigin) {
+                console.warn('Rejected postMessage from untrusted origin:', event.origin);
+                return;
+            }
 
             if (event.data?.type === 'oauth-success') {
+                const config = getConfig();
                 config.googleAccessToken = event.data.accessToken;
                 config.googleTokenExpiry = Date.now() + (event.data.expiresIn * 1000);
                 saveConfig(config);

@@ -8,16 +8,26 @@
  * - /logout: Removes stored tokens
  */
 
-// CORS headers for frontend requests
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*', // Will be restricted in production
-  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-};
+// Allowed origins for CORS
+const ALLOWED_ORIGINS = [
+  'https://b3.wtf',
+  'https://berthuygens.github.io',
+  'http://localhost:8080',
+  'http://127.0.0.1:8080'
+];
 
-// Handle CORS preflight
-function handleOptions() {
-  return new Response(null, { headers: corsHeaders });
+// Handle CORS preflight - returns headers for first allowed origin
+// Actual request handlers use dynamic origin matching
+function handleOptions(request) {
+  const origin = request?.headers?.get('Origin');
+  const corsOrigin = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+  return new Response(null, {
+    headers: {
+      'Access-Control-Allow-Origin': corsOrigin,
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    }
+  });
 }
 
 // Google OAuth endpoints
@@ -30,19 +40,12 @@ export default {
 
     // Handle CORS preflight
     if (request.method === 'OPTIONS') {
-      return handleOptions();
+      return handleOptions(request);
     }
 
-    // Restrict CORS to your domain in production
-    const allowedOrigins = [
-      'https://b3.wtf',
-      'https://berthuygens.github.io',
-      'http://localhost:8080',
-      'http://127.0.0.1:8080'
-    ];
-
+    // Use origin from request, validate against allowed list
     const origin = request.headers.get('Origin');
-    const corsHeader = allowedOrigins.includes(origin) ? origin : allowedOrigins[0];
+    const corsHeader = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
 
     try {
       switch (url.pathname) {
@@ -149,6 +152,9 @@ async function handleCallback(request, env, url) {
   await env.OAUTH_TOKENS.put('token_data', JSON.stringify(tokenData));
 
   // Return success page that posts message to opener and closes
+  // SECURITY: Only post to explicitly allowed origins (reuse global constant)
+  const allowedOriginsJson = JSON.stringify(ALLOWED_ORIGINS);
+
   return htmlResponse(`
     <!DOCTYPE html>
     <html>
@@ -160,9 +166,18 @@ async function handleCallback(request, env, url) {
         <p style="color: #8b949e;">This window will close automatically...</p>
       </div>
       <script>
-        // Send success message to parent window
+        // SECURITY: Only send OAuth token to explicitly allowed origins
+        const allowedOrigins = ${allowedOriginsJson};
         if (window.opener) {
-          window.opener.postMessage({ type: 'oauth-success', accessToken: '${tokens.access_token}', expiresIn: ${tokens.expires_in} }, '*');
+          const message = { type: 'oauth-success', accessToken: '${tokens.access_token}', expiresIn: ${tokens.expires_in} };
+          // Post to each allowed origin - browser only delivers to matching origin
+          allowedOrigins.forEach(origin => {
+            try {
+              window.opener.postMessage(message, origin);
+            } catch (e) {
+              // Origin mismatch is expected for non-matching origins
+            }
+          });
         }
         setTimeout(() => window.close(), 2000);
       </script>
