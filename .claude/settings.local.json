@@ -43,7 +43,11 @@
       "Skill(design-principles)",
       "Skill(git)",
       "WebFetch(domain:ready.so)",
-      "Bash(rsvg-convert:*)"
+      "Bash(rsvg-convert:*)",
+      "Bash(gh pr view:*)",
+      "Bash(git push:*)",
+      "Bash(ln:*)",
+      "Bash(git -C /Users/sysopbeta/code/work/daemon log --oneline -20)"
     ]
   }
 }

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-DAEMON Dashboard is a personal developer dashboard - a static single-page application hosted on GitHub Pages with a Cloudflare Worker backend for OAuth token management. It displays GitHub issues/PRs, Google Calendar events, quick links, and Reddit posts.
+DAEMON Dashboard is a personal developer dashboard - a static single-page application hosted on GitHub Pages with a Cloudflare Worker backend for OAuth token management. It displays GitHub issues/PRs, Google Calendar events, quick links, Reddit posts, and CCB security advisories.
 
 ## Development Commands
 
@@ -34,8 +34,9 @@ Frontend (Static)                    Backend (Cloudflare Worker)
 │   ├── HTML structure               │   ├── /callback → Token exchange
 │   └── JavaScript logic             │   ├── /token → Fresh access token
 │       ├── GitHub API calls         │   ├── /status → Auth check
-│       ├── Calendar API calls       │   └── /logout → Remove tokens
-│       ├── Reddit API calls         └── wrangler.toml (config)
+│       ├── Calendar API calls       │   ├── /logout → Remove tokens
+│       ├── Reddit API calls         │   └── /rss → RSS proxy
+│       ├── CCB news ticker          └── wrangler.toml (config)
 │       └── LocalStorage (settings)
 ```
 
@@ -44,12 +45,14 @@ Frontend (Static)                    Backend (Cloudflare Worker)
 - GitHub token stored in browser localStorage
 - Google refresh token stored in Cloudflare KV (server-side)
 - Worker handles OAuth token refresh automatically - users authenticate once
+- OAuth flow includes CSRF protection via state parameter validation
 
 ## External APIs
 
 - **GitHub REST API**: Issues and PRs (requires `repo`, `read:user` scopes)
 - **Google Calendar API v3**: Calendar events (requires `calendar.readonly` scope)
 - **Reddit JSON API**: Posts from SFW subreddits (no auth needed)
+- **CCB RSS Feed**: Security advisories from Centre for Cybersecurity Belgium (proxied through Worker)
 
 ## Calendar Event Filtering
 
@@ -65,7 +68,9 @@ Events with these titles are automatically filtered (work locations):
 | `/token` | GET | Get fresh access token |
 | `/status` | GET | Check authentication status |
 | `/logout` | POST | Remove stored tokens |
+| `/rss` | GET | RSS proxy for CCB advisories |
 
-## Live URL
+## Live URLs
 
-https://berthuygens.github.io/daemon/
+- https://b3.wtf (custom domain)
+- https://berthuygens.github.io/daemon/
