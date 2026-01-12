@@ -2001,7 +2001,7 @@
                 events = events.filter(event => {
                     const title = (event.summary || '').toLowerCase();
                     return !locationKeywords.some(keyword => title.includes(keyword));
-                }).slice(0, 3);
+                }).slice(0, 5);
 
                 if (!events.length) {
                     showEmptyState('calendar-container', '📅', 'No upcoming meetings');
