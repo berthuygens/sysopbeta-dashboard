@@ -175,6 +175,12 @@
             max-height: 400px;
             overflow-y: auto;
             box-shadow: var(--shadow-lg);
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .nav-search .search-results::-webkit-scrollbar {
+            display: none;
         }
 
         .nav-search .search-results.has-results {
@@ -380,23 +386,12 @@
             padding: var(--space-3);
             height: 320px;
             overflow-y: auto;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
         }
 
         .card-body::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .card-body::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .card-body::-webkit-scrollbar-thumb {
-            background: var(--border);
-            border-radius: var(--radius-full);
-        }
-
-        .card-body::-webkit-scrollbar-thumb:hover {
-            background: var(--border-hover);
+            display: none; /* Chrome/Safari/Opera */
         }
 
         /* ========== List Items (GitHub/Calendar) ========== */
@@ -845,6 +840,12 @@
             box-shadow: var(--shadow-lg);
             transform: scale(0.95) translateY(10px);
             transition: transform var(--duration-normal) var(--ease-out);
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .modal::-webkit-scrollbar {
+            display: none;
         }
 
         .modal-overlay.active .modal {
