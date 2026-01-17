@@ -428,6 +428,7 @@
         .list-item-content {
             flex: 1;
             min-width: 0;
+            overflow: hidden;
         }
 
         .list-item-content::before {
@@ -457,9 +458,17 @@
             color: var(--text-muted);
             margin-top: var(--space-2);
             padding-left: 0;
+            flex-wrap: wrap;
+            overflow: hidden;
         }
 
-        .list-item-meta .repo { color: var(--text-muted); }
+        .list-item-meta .repo {
+            color: var(--text-muted);
+            max-width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
         .list-item-meta .assignee { color: var(--accent); }
         .list-item-meta .countdown { color: var(--text-muted); }
         .list-item-meta .review { color: var(--warning); }
