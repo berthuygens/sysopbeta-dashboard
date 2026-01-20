@@ -1316,6 +1316,12 @@
                         <label class="form-label">Profile Link URL</label>
                         <input type="text" class="form-input" id="profile-link-url" placeholder="https://github.com/username">
                     </div>
+                    <div class="form-group">
+                        <label class="form-label">Custom Quick Link</label>
+                        <input type="text" class="form-input" id="custom-link-name" placeholder="Link name" style="margin-bottom: 8px;">
+                        <input type="text" class="form-input" id="custom-link-url" placeholder="https://example.com">
+                        <p class="form-hint">Add a custom link to Quick Links (leave empty to hide)</p>
+                    </div>
                     <button type="submit" class="btn btn-primary btn-block">Save & Reload</button>
                 </form>
             </div>
@@ -1548,15 +1554,33 @@
             localStorage.setItem(LINKS_ORDER_KEY, JSON.stringify(order));
         }
 
+        function getAllLinks() {
+            const config = getConfig();
+            const links = [...DEFAULT_LINKS];
+
+            // Add custom link if configured
+            if (config.customLinkName && config.customLinkUrl) {
+                links.push({
+                    id: 'custom',
+                    name: config.customLinkName,
+                    url: config.customLinkUrl,
+                    icon: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>'
+                });
+            }
+
+            return links;
+        }
+
         function renderQuickLinks() {
             const container = document.getElementById('quick-links');
             const order = getLinksOrder();
+            const allLinks = getAllLinks();
 
             const sortedLinks = order
-                .map(id => DEFAULT_LINKS.find(l => l.id === id))
+                .map(id => allLinks.find(l => l.id === id))
                 .filter(Boolean);
 
-            DEFAULT_LINKS.forEach(link => {
+            allLinks.forEach(link => {
                 if (!order.includes(link.id)) sortedLinks.push(link);
             });
 
@@ -2301,6 +2325,8 @@
             document.getElementById('worker-url').value = config.workerUrl || '';
             document.getElementById('profile-image-url').value = config.profileImageUrl || '';
             document.getElementById('profile-link-url').value = config.profileLinkUrl || 'https://github.com/berthuygens?tab=repositories';
+            document.getElementById('custom-link-name').value = config.customLinkName || '';
+            document.getElementById('custom-link-url').value = config.customLinkUrl || '';
             updateGoogleAuthStatus();
             modal.classList.add('active');
         });
@@ -2322,6 +2348,8 @@
             config.workerUrl = document.getElementById('worker-url').value;
             config.profileImageUrl = document.getElementById('profile-image-url').value;
             config.profileLinkUrl = document.getElementById('profile-link-url').value || 'https://github.com/berthuygens?tab=repositories';
+            config.customLinkName = document.getElementById('custom-link-name').value;
+            config.customLinkUrl = document.getElementById('custom-link-url').value;
             saveConfig(config);
             modal.classList.remove('active');
             updateRepoSearchPlaceholder();
