@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>b3.wtf</title>
+    <title>&lt;sysopbeta&gt;</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png?v=2">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=2">
@@ -1259,8 +1259,6 @@
             </section>
             <!-- Footer -->
             <footer class="footer">
-                <div class="footer-brand"><a href="https://b3.wtf">B3.wtf</a></div>
-                <div class="footer-tagline">automate.terminals();</div>
                 <div class="footer-meta"><span id="last-updated"></span></div>
                 <span class="status-dot" id="github-status" style="display: none;"></span>
             </footer>
@@ -1294,6 +1292,13 @@
                         <input type="text" class="form-input" id="repo-search-locations" placeholder="user:username, org:orgname">
                         <p class="form-hint">
                             Comma-separated. Format: <code>user:name</code> or <code>org:name</code>
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Watch All PRs (repos)</label>
+                        <input type="text" class="form-input" id="watch-all-prs-repos" placeholder="owner/repo, owner/repo2">
+                        <p class="form-hint">
+                            Show all open PRs from these repos, not just yours
                         </p>
                     </div>
                     <div class="form-group">
@@ -1712,13 +1717,34 @@
                 const reviewData = await reviewRes.json();
                 const reviewPrs = reviewData.items || [];
 
+                // Fetch all PRs from watched repos
+                let watchedPrs = [];
+                const watchedRepos = (config.watchAllPRsRepos || '').split(',').map(r => r.trim()).filter(r => r);
+                if (watchedRepos.length > 0) {
+                    const watchedPromises = watchedRepos.map(repo =>
+                        fetch(`https://api.github.com/repos/${repo}/pulls?state=open&per_page=20`, { headers })
+                            .then(res => res.ok ? res.json() : [])
+                            .catch(() => [])
+                    );
+                    const watchedResults = await Promise.all(watchedPromises);
+                    watchedPrs = watchedResults.flat().map(pr => ({
+                        ...pr,
+                        _isWatched: true,
+                        repository_url: `https://api.github.com/repos/${pr.base?.repo?.full_name || ''}`
+                    }));
+                }
+
                 renderIssues(currentIssuesView === 'assigned' ? assignedIssues : createdIssues, currentIssuesView);
-                renderPRs(prs, reviewPrs);
+                renderPRs(prs, reviewPrs, watchedPrs);
 
                 document.getElementById('github-status').classList.add('connected');
                 document.getElementById('issues-assigned-count').textContent = assignedIssues.length;
                 document.getElementById('issues-created-count').textContent = createdIssues.length;
-                document.getElementById('prs-count').textContent = prs.length + (reviewPrs.length > 0 ? `+${reviewPrs.length}` : '');
+                // Calculate unique PR count
+                const allPrIds = new Set(prs.map(p => p.id));
+                reviewPrs.forEach(p => allPrIds.add(p.id));
+                watchedPrs.forEach(p => allPrIds.add(p.id));
+                document.getElementById('prs-count').textContent = allPrIds.size;
             } catch (err) {
                 console.error('GitHub fetch error:', err);
                 showEmptyState('issues-container', '⚠️', err.message || 'Failed to fetch');
@@ -2038,7 +2064,7 @@
             `}).join('');
         }
 
-        function renderPRs(prs, reviewPrs = []) {
+        function renderPRs(prs, reviewPrs = [], watchedPrs = []) {
             const container = document.getElementById('prs-container');
 
             const allPrs = [...prs];
@@ -2047,6 +2073,13 @@
                 if (!prIds.has(pr.id)) {
                     pr._isReview = true;
                     allPrs.push(pr);
+                    prIds.add(pr.id);
+                }
+            });
+            watchedPrs.forEach(pr => {
+                if (!prIds.has(pr.id)) {
+                    allPrs.push(pr);
+                    prIds.add(pr.id);
                 }
             });
 
@@ -2322,6 +2355,7 @@
             const config = getConfig();
             document.getElementById('github-token').value = config.githubToken || '';
             document.getElementById('repo-search-locations').value = config.repoSearchLocations || 'user:berthuygens, org:inbo';
+            document.getElementById('watch-all-prs-repos').value = config.watchAllPRsRepos || '';
             document.getElementById('worker-url').value = config.workerUrl || '';
             document.getElementById('profile-image-url').value = config.profileImageUrl || '';
             document.getElementById('profile-link-url').value = config.profileLinkUrl || 'https://github.com/berthuygens?tab=repositories';
@@ -2345,6 +2379,7 @@
             const config = getConfig();
             config.githubToken = document.getElementById('github-token').value;
             config.repoSearchLocations = document.getElementById('repo-search-locations').value || 'user:berthuygens, org:inbo';
+            config.watchAllPRsRepos = document.getElementById('watch-all-prs-repos').value;
             config.workerUrl = document.getElementById('worker-url').value;
             config.profileImageUrl = document.getElementById('profile-image-url').value;
             config.profileLinkUrl = document.getElementById('profile-link-url').value || 'https://github.com/berthuygens?tab=repositories';
