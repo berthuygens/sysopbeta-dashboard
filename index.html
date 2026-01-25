@@ -382,6 +382,10 @@
             color: var(--accent);
         }
 
+        .card-toggle-btn span.has-items {
+            color: var(--accent);
+        }
+
         .card-body {
             padding: var(--space-3);
             height: 320px;
@@ -1739,8 +1743,12 @@
                 renderPRs(prs, reviewPrs, watchedPrs);
 
                 document.getElementById('github-status').classList.add('connected');
-                document.getElementById('issues-assigned-count').textContent = assignedIssues.length;
-                document.getElementById('issues-created-count').textContent = createdIssues.length;
+                const assignedCountEl = document.getElementById('issues-assigned-count');
+                const createdCountEl = document.getElementById('issues-created-count');
+                assignedCountEl.textContent = assignedIssues.length;
+                createdCountEl.textContent = createdIssues.length;
+                assignedCountEl.classList.toggle('has-items', assignedIssues.length > 0);
+                createdCountEl.classList.toggle('has-items', createdIssues.length > 0);
                 // Calculate unique PR count
                 const allPrIds = new Set(prs.map(p => p.id));
                 reviewPrs.forEach(p => allPrIds.add(p.id));
@@ -1788,12 +1796,17 @@
 
                 if (data.error) {
                     console.error('OTRS error:', data.error);
-                    document.getElementById('issues-helpdesk-count').textContent = '!';
+                    const helpdeskCountEl = document.getElementById('issues-helpdesk-count');
+                    helpdeskCountEl.textContent = '!';
+                    helpdeskCountEl.classList.remove('has-items');
                     return;
                 }
 
                 issuesData.helpdesk = data.tickets || [];
-                document.getElementById('issues-helpdesk-count').textContent = data.total || issuesData.helpdesk.length;
+                const helpdeskCount = data.total || issuesData.helpdesk.length;
+                const helpdeskCountEl = document.getElementById('issues-helpdesk-count');
+                helpdeskCountEl.textContent = helpdeskCount;
+                helpdeskCountEl.classList.toggle('has-items', helpdeskCount > 0);
 
                 // If currently viewing helpdesk, refresh the display
                 if (currentIssuesView === 'helpdesk') {
@@ -1801,7 +1814,9 @@
                 }
             } catch (err) {
                 console.error('OTRS fetch error:', err);
-                document.getElementById('issues-helpdesk-count').textContent = '!';
+                const helpdeskCountEl = document.getElementById('issues-helpdesk-count');
+                helpdeskCountEl.textContent = '!';
+                helpdeskCountEl.classList.remove('has-items');
             }
         }
 
