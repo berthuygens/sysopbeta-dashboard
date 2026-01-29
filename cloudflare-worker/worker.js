@@ -38,6 +38,16 @@ const GOOGLE_TOKEN_URL = 'https://oauth2.googleapis.com/token';
 // OTOBO API endpoint (migrated from OTRS)
 const OTOBO_BASE_URL = 'https://ticketing.inbo.be/otobo/nph-genericinterface.pl/Webservice/DaemonAPI';
 
+// Validate API key from Authorization: Bearer <key> header
+function validateApiKey(request, env) {
+  const authHeader = request.headers.get('Authorization');
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return false;
+  }
+  const key = authHeader.slice(7);
+  return key === env.API_KEY;
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -50,6 +60,13 @@ export default {
     // Use origin from request, validate against allowed list
     const origin = request.headers.get('Origin');
     const corsHeader = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+
+    // /auth and /callback are part of the OAuth flow (browser redirects, not fetch)
+    // All other endpoints require a valid API key
+    const publicPaths = ['/auth', '/callback'];
+    if (!publicPaths.includes(url.pathname) && !validateApiKey(request, env)) {
+      return jsonResponse({ error: 'Unauthorized' }, 401, corsHeader);
+    }
 
     try {
       switch (url.pathname) {

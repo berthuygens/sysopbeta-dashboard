@@ -1312,6 +1312,11 @@
                         <p class="form-hint">Your Cloudflare Worker URL</p>
                     </div>
                     <div class="form-group">
+                        <label class="form-label">API Key</label>
+                        <input type="password" class="form-input" id="worker-api-key" placeholder="Bearer token for Worker endpoints">
+                        <p class="form-hint">Authenticates requests to the Worker</p>
+                    </div>
+                    <div class="form-group">
                         <label class="form-label">Google Calendar</label>
                         <button type="button" class="btn btn-primary btn-block" id="google-auth-btn">
                             Connect Google Calendar
@@ -1372,6 +1377,16 @@
 
         function saveConfig(config) {
             localStorage.setItem(CONFIG_KEY, JSON.stringify(config));
+        }
+
+        // Build headers for authenticated Worker requests
+        function workerHeaders() {
+            const config = getConfig();
+            const headers = {};
+            if (config.workerApiKey) {
+                headers['Authorization'] = `Bearer ${config.workerApiKey}`;
+            }
+            return headers;
         }
 
         // ========== Theme Toggle ==========
@@ -1791,7 +1806,7 @@
             }
 
             try {
-                const response = await fetch(`${workerUrl}/otrs/tickets`);
+                const response = await fetch(`${workerUrl}/otrs/tickets`, { headers: workerHeaders() });
                 const data = await response.json();
 
                 if (data.error) {
@@ -2128,7 +2143,7 @@
             if (!config.workerUrl) return null;
 
             try {
-                const res = await fetch(`${config.workerUrl}/token`);
+                const res = await fetch(`${config.workerUrl}/token`, { headers: workerHeaders() });
                 const data = await res.json();
 
                 if (data.error) {
@@ -2373,6 +2388,7 @@
             document.getElementById('repo-search-locations').value = config.repoSearchLocations || 'user:berthuygens, org:inbo';
             document.getElementById('watch-all-prs-repos').value = config.watchAllPRsRepos || '';
             document.getElementById('worker-url').value = config.workerUrl || '';
+            document.getElementById('worker-api-key').value = config.workerApiKey || '';
             document.getElementById('profile-image-url').value = config.profileImageUrl || '';
             document.getElementById('profile-link-url').value = config.profileLinkUrl || 'https://github.com/berthuygens?tab=repositories';
             document.getElementById('custom-link-name').value = config.customLinkName || '';
@@ -2397,6 +2413,7 @@
             config.repoSearchLocations = document.getElementById('repo-search-locations').value || 'user:berthuygens, org:inbo';
             config.watchAllPRsRepos = document.getElementById('watch-all-prs-repos').value;
             config.workerUrl = document.getElementById('worker-url').value;
+            config.workerApiKey = document.getElementById('worker-api-key').value;
             config.profileImageUrl = document.getElementById('profile-image-url').value;
             config.profileLinkUrl = document.getElementById('profile-link-url').value || 'https://github.com/berthuygens?tab=repositories';
             config.customLinkName = document.getElementById('custom-link-name').value;
@@ -2420,7 +2437,7 @@
             }
 
             try {
-                const res = await fetch(`${config.workerUrl}/status`);
+                const res = await fetch(`${config.workerUrl}/status`, { headers: workerHeaders() });
                 const data = await res.json();
                 if (data.authenticated) {
                     statusEl.textContent = 'Connected (auto-refresh enabled)';
@@ -2528,7 +2545,7 @@
 
             try {
                 const rssUrl = `${config.workerUrl}/rss?url=${encodeURIComponent('https://ccb.belgium.be/advisories.xml')}`;
-                const response = await fetch(rssUrl);
+                const response = await fetch(rssUrl, { headers: workerHeaders() });
                 const xmlText = await response.text();
 
                 const parser = new DOMParser();
