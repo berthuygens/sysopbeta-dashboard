@@ -15,9 +15,9 @@ A personal developer dashboard with GitHub integration and Google Calendar suppo
 - **Auto-refresh**: Data updates every 5 minutes
 - **Real-time Clock**: Current time and date display
 
-## Live Demo
+## Live
 
-https://berthuygens.github.io/daemon/
+https://sysopbeta.be
 
 ## Setup
 
@@ -66,6 +66,7 @@ wrangler kv namespace create "OAUTH_TOKENS"
 # Set secrets
 echo "YOUR_CLIENT_ID" | wrangler secret put GOOGLE_CLIENT_ID
 echo "YOUR_CLIENT_SECRET" | wrangler secret put GOOGLE_CLIENT_SECRET
+echo "YOUR_API_KEY" | wrangler secret put API_KEY
 
 # Deploy
 wrangler deploy
@@ -75,7 +76,8 @@ wrangler deploy
 
 1. Open the dashboard settings (gear icon)
 2. Enter your Worker URL: `https://YOUR-WORKER.workers.dev`
-3. Click "Connect Google Calendar"
+3. Enter the API Key (same value as the `API_KEY` secret)
+4. Click "Connect Google Calendar"
 4. Authorize with Google
 
 You should now see `✓ Auto` in the calendar header - tokens refresh automatically!
@@ -119,6 +121,7 @@ The following events are automatically filtered out (work locations):
 - **GitHub token**: Stored in browser localStorage only
 - **Google refresh token**: Stored securely in Cloudflare KV (encrypted at rest)
 - **Google access token**: Cached locally, auto-refreshed via Worker
+- **Worker endpoints**: Protected by API key (Bearer token authentication)
 - **Link order & preferences**: Stored in browser localStorage
 - **No tracking**: No analytics or tracking scripts
 
